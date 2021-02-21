@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACT,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,aAAa;CACvB",
+    "sources": [
+        "../date-menu/date-menu.component.scss"
+    ],
+    "names": [],
+    "file": "date-menu.component.css"
+}

@@ -1,0 +1,193 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row content-item mx-auto flex-wrap-reverse">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="content-text p-5 mt-5">
+                    <p><b>WEDEMY</b> merupakan aplikasi belajar online dengan instruktur berpengalaman. Materi pelajaran yang lengkap dan latihan soal yang dapat mengasah kemampuanmu. Jadwal pembelajaran yang terorganisir dengan baik dapat membantu peserta
+                        belajar dengan efektif dan efisien.
+                    </p>
+                    <button pButton type="button" label="Belajar Sekarang" routerLink="/class"></button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="d-flex justify-content-around">
+                    <img class="" src="assets/img/home-01.png" [style]="{'width': '65%'}" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row sec1 p-3 my-5 shadow-lg rounded">
+            <div class="col-12 my-3 ">
+                <h3>Telah Dipercaya Oleh</h3>
+            </div>
+            <div class="col-12 my-3 partner-logo">
+                <img src="https://www.lawencon.com/wp-content/uploads/2016/11/lwcn-logo.png" alt="">
+                <img src="https://yt3.ggpht.com/ytc/AAUvwnhqbcSFYE8YYpfQNXD_pfFNOJGqvC0t68mwtK1o=s900-c-k-c0x00ffffff-no-rj" alt="">
+                <img src="https://www.lawencon.com/wp-content/uploads/2016/11/LinovCRM-Logo-Flat.png" alt="">
+            </div>
+        </div>
+
+
+        <div class="row sec2 py-5 my-5">
+            <div class="col-12 my-3">
+                <h2>Kelas Favorit</h2>
+            </div>
+
+            <div *ngIf="!isLoading" class="col-12 class-wrapper mt-5 d-flex flex-wrap justify-content-around">
+                <div class="card-deck justify-content-around">
+                    <div class="card shadow class-card " *ngFor="let c of listTopClasses">
+                        <div class="card-img-wrapper">
+                            <img src="data:image/png;base64,{{c.idClass.idFile.file}}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{c.idClass.className}}</h5>
+                            <p class="card-text">{{c.idClass.description}}</p>
+                        </div>
+                        <div>
+                            <button pButton type="button" icon="pi pi-arrow-right" iconPos="left" label="Selengkapnya" routerLink="/class/{{c.id}}" class="mb-4"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isLoading" class=" col-12 class-wrapper mt-5 d-flex flex-wrap justify-content-around">
+                <div class="card-deck justify-content-around">
+                    <div class="card shadow class-card " *ngFor="let c of top">
+                        <div class="card-img-wrapper">
+                            <p-skeleton width="100%" height="100%"></p-skeleton>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <p-skeleton width="15rem" height="2rem" styleClass="mx-auto"></p-skeleton>
+                            </h5>
+                            <p class="card-text">
+                                <p-skeleton width="10rem" height="1rem" styleClass="mt-2 mx-auto"></p-skeleton>
+                            </p>
+                            <p class="card-text">
+                                <p-skeleton width="10rem" height="1rem" styleClass="mt-2 mx-auto"></p-skeleton>
+                            </p>
+                        </div>
+                        <div>
+                            <button pButton type="button" icon="pi pi-arrow-right" iconPos="left" label="Selengkapnya" routerLink="/class/{{c.id}}" class="mb-4"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="pb-5">
+            <div class="my-3 text-center">
+                <h2>Testimoni Alumni</h2>
+            </div>
+            <div id="carouselExampleControls" class="carousel slide mb-5 rounded" data-ride="carousel ">
+                <ol class="carousel-indicators mt-5 pt-5">
+                    <li data-target="#carouselExampleControls" data-slide-to="0 " class="active bg-dark "></li>
+                    <li data-target="#carouselExampleControls" data-slide-to="1 " class="bg-dark "></li>
+                    <li data-target="#carouselExampleControls" data-slide-to="2 " class="bg-dark "></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active ">
+                        <div class="col-12 ">
+                            <div class="card ">
+                                <div class="card-horizontal d-lg-flex ">
+                                    <div class=" img-square-wrapper ">
+                                        <img class="img-fluid" src="https://image.freepik.com/free-photo/young-redhead-student-man-cheerful-smiling-pointing-front_1187-17784.jpg ">
+                                    </div>
+                                    <div class="card-body flex-grow-1 ">
+                                        <h4 class="card-title ">Nur Alfilail</h4>
+                                        <p class="card-text ">Wedemy membantuku belajar dengan lebih baik. Jadwal yang teratur membuatku dapat memahami materi pelajaran dengan baik. Saya sangat senang karena berkat Wedemy, saya bisa meraih peringkat pertama. Saya berhasil
+                                            menggapai impian saya menjadi seorang programmer hebat.
+                                        </p>
+                                        <p-divider></p-divider>
+                                        <div class="mb-5">
+                                            <small>
+                                                <p>Front End Developer - <b>PT. Lawencon International</b></p>
+                                                <p>Lulusan Front-end Web Developer Learning Path</p>
+                                            </small>
+                                        </div>
+                                        <div class="carousel-arrow fixed-bottom text-right pr-5">
+                                            <a class=" " href="#carouselExampleControls" role="button " data-slide="prev">
+                                                <i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i>
+                                            </a>
+                                            <a class="pl-1" href="#carouselExampleControls" role="button " data-slide="next">
+                                                <i class="pi pi-arrow-circle-right" style="font-size: 2rem"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="col-12 ">
+                            <div class="card ">
+                                <div class="card-horizontal d-lg-flex ">
+                                    <div class="img-square-wrapper ">
+                                        <img class="img-fluid " src="https://image.freepik.com/free-photo/young-student-girl-isolated-yellow-surprised-pointing-finger-side_1368-60201.jpg " alt="Card image cap ">
+                                    </div>
+                                    <div class="card-body">
+
+                                        <h4 class="card-title ">Anggi Alberto</h4>
+                                        <p class="card-text ">Di Wedemy, setiap kelas memiliki jadwal yang teratur sehingga kita bisa tahu berapa lama kita belajar. Kita juga menjadi disiplin karena harus absen tepat waktu agar bisa mengakses materi di hari itu. Untuk setiap
+                                            materi, terdapat tugas yang harus kita selesaikan untuk mengasah kemampuan kita, seberapa paham akan materi tersebut. Terima kasih Wedemy! </p>
+                                        <p-divider></p-divider>
+                                        <div class="mb-5">
+                                            <small>
+                                                <p>Front End Developer - <b>PT. Lawencon International</b></p>
+                                                <p>Lulusan Front-end Web Developer Learning Path</p>
+                                            </small>
+                                        </div>
+                                        <div class="carousel-arrow fixed-bottom text-right pr-5">
+                                            <a class=" " href="#carouselExampleControls" role="button " data-slide="prev">
+                                                <i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i>
+                                            </a>
+                                            <a class="pl-1" href="#carouselExampleControls" role="button " data-slide="next">
+                                                <i class="pi pi-arrow-circle-right" style="font-size: 2rem"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item ">
+                        <div class="col-12 ">
+                            <div class="card ">
+                                <div class="card-horizontal d-lg-flex ">
+                                    <div class="img-square-wrapper ">
+                                        <img class="img-fluid " src="https://image.freepik.com/free-photo/young-student-man-holding-books-surprised-pointing-himself-smiling-broadly_1187-19890.jpg " alt="Card image cap ">
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="card-title">Imron Rosyadi</h4>
+                                        <p class="card-text ">Pengajar-pengajar di Wedemy sangat baik dan dapat memberikan materi dengan jelas. Wedemy juga memiliki fitur forum diskusi, dimana kita bisa saling bertanya tentang materi yang belum dimengerti. Terima kasih Wedemy!</p>
+                                        <p-divider></p-divider>
+                                        <div class="mb-5">
+                                            <small>
+                                                <p>Front End Developer - <b>PT. Lawencon International</b></p>
+                                                <p>Lulusan Front-end Web Developer Learning Path</p>
+                                            </small>
+                                        </div>
+                                        <div class="carousel-arrow fixed-bottom text-right pr-5">
+                                            <a class=" " href="#carouselExampleControls" role="button " data-slide="prev">
+                                                <i class="pi pi-arrow-circle-left" style="font-size: 2rem"></i>
+                                            </a>
+                                            <a class="pl-1" href="#carouselExampleControls" role="button " data-slide="next">
+                                                <i class="pi pi-arrow-circle-right" style="font-size: 2rem"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

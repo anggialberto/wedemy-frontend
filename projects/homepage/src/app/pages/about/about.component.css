@@ -1,0 +1,41 @@
+.content {
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 70px;
+    background-color: #FFFFFF;
+    width: 100%;
+    position: relative;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    padding: 0px;
+}
+
+.content-item {
+    width: 100%;
+}
+
+.content-item-dtl {
+    width: 80%;
+}
+
+.icon {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.photo img {
+    width: 200px;
+}
+
+p {
+    font-size: medium;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Quicksand', sans-serif !important;
+}

@@ -1,0 +1,54 @@
+nav {
+    font-family: Quicksand, sans-serif !important;
+    font-size: medium !important;
+    color: #000000;
+}
+
+.navbar{
+  background: #454575  !important;
+}
+
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,0.95)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+
+  .navbar-toggler {
+border-color: white  !important;  
+}
+
+
+.nav-link{
+  color: white !important;
+}
+
+.nav-link-item.active {
+    color: #f4d242 !important;
+}
+
+.nav-link-item:hover {
+    color: #f4d242 !important;
+}
+
+.gravatar {
+    width: 34px;
+    height: 34px;
+}
+
+.profile-name {
+    font-weight: 400;
+    color: #000000;
+    cursor: pointer;
+}
+
+.profile-name:hover {
+    color: #f4d242 !important;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.nav-link {
+    cursor: pointer;
+}

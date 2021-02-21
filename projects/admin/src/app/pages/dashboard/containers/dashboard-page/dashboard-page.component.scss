@@ -1,0 +1,20 @@
+@import "/projects/admin/src/app/styles/colors.scss";
+@import '/projects/admin/src/app/styles/variables.scss';
+
+.card {
+  height: 250px;
+  align-items: center; /* center flex items vertically, in this case */
+}
+
+h3{
+  color: $yellow;
+  font-family: $font-header;
+  font-weight: 700;
+}
+
+.text{
+  color: $yellow;
+  font-family: $font-header;
+  font-weight: 1000;
+}
+

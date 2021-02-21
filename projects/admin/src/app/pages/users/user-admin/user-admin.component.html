@@ -1,0 +1,100 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h1>Admin</h1>
+    </mat-toolbar>
+
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 pb-5 justify-content-center">
+            <div class="card">
+                <p-toolbar class="p-m-3">
+                    <ng-template pTemplate="left" *ngIf="isSuperAdmin">
+                        <button pButton pRipple label="Tambah" icon="pi pi-plus" (click)="createAdmin()"
+                            class="p-button-success p-mr-2"></button>
+                    </ng-template>
+                    <ng-template pTemplate="right">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                    placeholder="Cari..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                </p-toolbar>
+                <p-table #dt [value]="listUsers" [rows]="10" [paginator]="true" [scrollable]="true" [rowHover]="true"
+                    dataKey="id" class="p-m-3"
+                    [globalFilterFields]="['idProfile.fullName','username','idProfile.email','idProfile.address','idProfile.birthPlace','idProfile.birthDate']"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
+                    <ng-template pTemplate="colgroup" let-columns>
+                        <colgroup>
+                            <col style="width:200px">
+                            <col style="width:150px">
+                            <col style="width:200px">
+                            <col style="width:220px">
+                            <col style="width:220px">
+                            <col style="width:200px">
+                            <col style="width:200px">
+                            <col style="width:200px">
+                            <col style="width:200px">
+                            <col style="width:100px">
+                        </colgroup>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="nik">NIK<p-sortIcon field="nama"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="username">Username<p-sortIcon field="username"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="idProfile.fullName">Nama<p-sortIcon field="idProfile.fullName">
+                                </p-sortIcon>
+                            </th>
+                            <th>Bio </th>
+                            <th pSortableColumn="idProfile.email">E-mail<p-sortIcon field="idProfile.email">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="idProfile.address">Alamat<p-sortIcon field="idProfile.address">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="idProfile.birthPlace">Tempat Lahir<p-sortIcon
+                                    field="idProfile.birthPlace"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="idProfile.birthDate">Tanggal Lahir<p-sortIcon
+                                    field="idProfile.birthDate"></p-sortIcon>
+                            </th>
+                            <th>Nomor Ponsel </th>
+                            <th>Aksi</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-listUsers>
+                        <tr>
+                            <td>{{listUsers.idProfile.idNumber}}</td>
+                            <td>{{listUsers.username}}</td>
+                            <td>{{listUsers.idProfile.fullName}}</td>
+                            <td>{{listUsers.idProfile.bio}}</td>
+                            <td>{{listUsers.idProfile.email}}</td>
+                            <td>{{listUsers.idProfile.address}}</td>
+                            <td>{{listUsers.idProfile.birthPlace}}</td>
+                            <td>{{listUsers.idProfile.birthDate | date:'longDate'}}</td>
+                            <td>{{listUsers.idProfile.phone}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="deleteUser(listUsers.id)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            Terdapat {{listUsers ? listUsers.length : 0 }} Admin.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+
+
+
+            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</app-layout>

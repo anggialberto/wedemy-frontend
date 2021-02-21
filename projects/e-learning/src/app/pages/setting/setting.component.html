@@ -1,0 +1,54 @@
+<div class="main bg-light">
+    <div class="container">
+        <div class="box bg-white p-p-4 rounded shadow mx-auto">
+            <h5><i class="pi pi-cog"></i> Pengaturan
+            </h5>
+            <div class="p-fluid">
+                <div class="my-3"></div>
+                <!-- <button pButton pRipple (click)="showUsernameDialog()" type="button" label="Ubah Nama Pengguna" class="p-button-outlined text-left"><i class="pi pi-user mr-3"></i></button> -->
+                <div class="my-3"></div>
+                <button pButton pRipple (click)="showPasswordDialog()" type="button" label="Ubah Kata Sandi" class="p-button-outlined text-left"><i class="pi pi-key mr-3"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Ubah Nama Pengguna" [(visible)]="displayUsername" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <div class="p-fluid">
+        <div class="p-field">
+            <label for="usernameNow">Nama pengguna saat ini</label>
+            <input id="usernameNow" type="text" value="user.username" disabled pInputText>
+        </div>
+        <div class="p-field">
+            <label for="usernameNew">Nama pengguna baru</label>
+            <input required [(ngModel)]="usernameNew" id="usernameNew" type="text" (ngModelChange)="usernameNewValidation($event)" pInputText>
+            <small *ngIf="!usernameNewIsValid" id="fullname-help" class="p-error ">{{usernameNewMsg}}</small>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="changeUsername()" label="Simpan" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog header="Ubah Kata Sandi" [(visible)]="displayPassword" class="dialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <div class="p-fluid">
+        <div class="p-field">
+            <label for="pwNow">Kata sandi saat ini</label>
+            <input required [(ngModel)]="pwNow" id="pwNow" type="password" (ngModelChange)="pwNowValidation($event)" pInputText>
+            <small *ngIf="!pwNowIsValid" id="fullname-help" class="p-error">{{pwNowMsg}}</small>
+        </div>
+        <div class="p-field">
+            <label for="pwNew">Kata sandi baru</label>
+            <input required [(ngModel)]="pwNew" id="pwNew" type="password" (ngModelChange)="pwNewValidation($event)" pInputText>
+            <small *ngIf="!pwNewIsValid" id="fullname-help" class="p-error ">{{pwNewMsg}}</small>
+        </div>
+        <div class="p-field">
+            <label for="pwNewConfirm">Konfirmasi kata sandi</label>
+            <input required [(ngModel)]="pwNewConfirm" id="pwNewConfirm" type="password" (ngModelChange)="pwNewConfirmValidation($event)" pInputText>
+            <small *ngIf="!pwNewConfirmIsValid" id="fullname-help" class="p-error ">{{pwNewConfirmMsg}}</small>
+        </div>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="changePassword()" label="Simpan" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

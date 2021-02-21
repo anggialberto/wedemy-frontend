@@ -1,0 +1,84 @@
+<main>
+  <div class="container">
+    <!-- <div class="p-d-flex p-ai-center p-jc-between mb-4 p-flex-wrap">
+            <div *ngIf="myRole===ROLES.PARTICIPANT" class="form-group p-d-flex p-ai-center p-jc-start">
+
+                <label class="mr-2 ml-2 p-mt-1" for="ins">Tutor :</label>
+                <p-dropdown inputId="ins" [options]="instructors" (ngModelChange)="search()" [(ngModel)]="selectedInstructor" placeholder="Semua  &#9;" optionLabel="name"></p-dropdown>
+                 -->
+
+    <div class="mb-4 p-d-flex p-flex-wrap p-jc-between">
+      <div *ngIf="myRole===ROLES.PARTICIPANT" class="form-group">
+        <div class="p-d-flex group-by-tutor">
+          <label class="mr-2 p-as-center" for="ins">Tutor :</label>
+          <select [(ngModel)]="selectedInstructor" (ngModelChange)="search()" id="ins" class="shadow-sm form-control">
+            <option [ngValue]="'Semua'">Semua</option>
+            <option *ngFor="let instructor of instructors" [ngValue]="instructor">{{ instructor }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group has-search">
+        <span class="fas fa-search form-control-feedback"></span>
+        <input [(ngModel)]="query" (ngModelChange)="search()" type="text" class="form-control"
+          placeholder="Temukan kelas">
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading && results.length === 0" class="d-flex justify-content-center align-items-center text-center"
+      style="font-size: 200%; font-weight: bold;">
+      <p>Kamu belum terdaftar di kelas manapun :(</p>
+
+    </div>
+
+    <div *ngIf="!isLoading" class="row course-list list justify-content-start">
+      <!-- Course Listing -->
+      <ng-template ngFor let-class [ngForOf]="results" let-i="index">
+        <div class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
+          <div class="card card-wrapper shadow-lg card-light">
+            <img loading=lazy src="data:image/png;base64,{{class.idClass.idFile.file}}"
+              class="card-img-top card-img-class">
+            <div class="card-body">
+              <a class="text-decoration-none" [routerLink]="['../class/enrolled', class.id]">
+                <h5 class="card-title class-title">
+                  {{class.idClass.className}}
+                </h5>
+              </a>
+              <p class="card-text class-short-desc">
+                {{class.idClass.description}}
+              </p>
+              <hr>
+              <div class="instructor-profile">
+                <img class="float-left rounded-circle"
+                  src="{{class.idClass.idTutor.idProfile.idFile.file? 'data:image/png;base64,'+class.idClass.idTutor.idProfile.idFile.file : defaultImg}}"
+                  alt="" width="36px" height="36px">
+
+                <p class="ml-3 float-left instructor-name mt-2">
+                  {{class.idClass.idTutor.idProfile.fullName}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+
+    <div *ngIf="isLoading" class="row course-list list justify-content-between">
+      <div *ngFor='let in of counter(1) ;let i = index'
+        class="animate__animated animate__fadeIn col-12 col-sm-6 col-md-4 mb-4">
+        <div class="card shadow-lg card-light">
+          <p-skeleton width="100%" height="200px" styleClass="p-mb-3"></p-skeleton>
+          <div class="p-d-flex p-flex-column p-px-2">
+            <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+            <p-skeleton width="15rem" height=".8rem" styleClass="p-mb-2"></p-skeleton>
+            <p-skeleton width="13rem" height=".8rem"></p-skeleton>
+          </div>
+          <hr>
+          <div class="p-d-flex p-pl-3 p-align-center p-mb-4">
+            <p-skeleton shape="circle" size="3rem" styleClass="p-mr-2"></p-skeleton>
+            <p-skeleton width="15rem" height="1rem" styleClass="p-mb-2"></p-skeleton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

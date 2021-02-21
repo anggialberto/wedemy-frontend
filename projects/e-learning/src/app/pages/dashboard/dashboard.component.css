@@ -1,0 +1,63 @@
+main {
+    font-family: Quicksand, sans-serif !important;
+    background-color: #f6f8fa;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: medium;
+    min-height: 600px;
+}
+
+.card-img-class {
+    background-color: #ffc160;
+    height: 240px;
+    object-fit: contain;
+}
+
+.class-title {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Quicksand, sans-serif !important;
+    cursor: pointer;
+}
+
+.class-short-desc {
+    font-size: 14px;
+    font-weight: 600;
+    color: #bac0c2;
+}
+
+.instructor-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.card-light:hover {
+    border-color: #f4d242 !important;
+    color: #f4d242 !important;
+    transition: ease-in-out .5s;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+.group-by-tutor {
+    width: 200px;
+}
+
+.group-by-tutor>label {
+    word-wrap: none;
+    white-space: nowrap;
+}

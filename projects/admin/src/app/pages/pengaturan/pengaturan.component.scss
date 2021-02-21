@@ -1,0 +1,66 @@
+@import "/projects/admin/src/app/styles/colors.scss";
+@import "/projects/admin/src/app/styles/font.scss";
+@import "/projects/admin/src/app/styles/variables.scss";
+
+.list-group-item{
+    background-color: #f6f7ff;
+  border-left-color: #f6f7ff;
+  border-right-color: #f6f7ff;
+  border-top-color: #f6f7ff;
+  border-bottom-color:#f6f7ff;
+  font-weight: $fw-lighter;
+  font-size: $fs-normal;
+}
+
+.list-group .list-group-item:hover{
+background-color: #e2e3e7;
+}
+
+.form-group{
+  font-weight: $fw-normal;
+}
+
+.list-group .list-group-item:active{
+  background-color: #e2e3e7;
+}
+
+:host::ng-deep .p-calendar .p-inputtext   {
+  height: 40px;
+  }
+
+:host::ng-deep  .p-calendar-w-btn {
+  height: 40px;
+}
+
+.profile-pic {
+  /* border-radius: 50%; */
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  vertical-align: middle;
+  text-align: center;
+  color: transparent;
+  transition: all .3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-pic:hover {
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 10000;
+  color: #fff;
+  transition: all .3s ease;
+  text-decoration: none;
+}
+
+.profile-pic span {
+  display: inline-block;
+  margin-top: 45%;
+}
+
+input[type="file"] {
+  display: none;
+  cursor: pointer;
+}

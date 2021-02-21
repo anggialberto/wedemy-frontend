@@ -1,0 +1,188 @@
+<p-dialog header="Masuk" [(visible)]="display" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p>Anda harus masuk terlebih dahulu untuk mendaftar di kelas ini</p>
+    <ng-template pTemplate="footer">
+        <button type="button" class="btn btn-outline-primary" (click)="closeDialog()">Batal</button>
+        <button type="button" class="btn btn-primary" routerLink="/auth/login"><b>LOGIN</b></button>
+    </ng-template>
+</p-dialog>
+<p-dialog header="Konfirmasi" [(visible)]="confirm" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p>Apakah Anda yakin ingin mendaftar di kelas ini ?</p>
+    <ng-template pTemplate="footer">
+        <button type="button" class="btn btn-outline-primary" (click)="closeDialog()">Tidak</button>
+        <button type="button" class="btn btn-primary px-4" (click)="enrollClass()">Ya</button>
+    </ng-template>
+</p-dialog>
+<div class="content">
+    <div class="header">
+    </div>
+    <div class="header-item container mx-auto px-auto p-d-lg-flex p-jc-start" [(ngModel)]="dtlClass" ngDefaultControl>
+        <div class="img-square-wrapper p-mx-auto p-mx-lg-0">
+            <p-skeleton *ngIf="loading" size="250px"></p-skeleton>
+            <img *ngIf="!loading" class="shadow rounded p-mx-auto" src="data:image/png;base64,{{dtlClass.idClass.idFile.file}}" alt="">
+        </div>
+        <span *ngIf="loading" class="info pl-3">
+            <p-skeleton  width="15rem" height="2rem" styleClass="p-mb-3"></p-skeleton>
+            <div>
+                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="10rem" height="1rem" styleClass=""></p-skeleton>
+             </div>
+             <p-skeleton width="10rem" height="3rem" styleClass="mt-5 mb-1"></p-skeleton>  
+        </span>
+        <span *ngIf="!loading" class="info pl-3">
+            <h2><b>{{dtlClass.idClass.className}}</b></h2> 
+            <div>
+                <h6 class="text-left ml-2"><i class="pi pi-users mr-1"></i>{{dtlClass.idClass.quota}} peserta</h6>
+                <h6 class="text-left ml-2"><i class="pi pi-book mr-1"></i>{{dtlClass.totalModules}} modul</h6>
+                <h6 class="text-left ml-2"><i class="pi pi-clock mr-1"></i>{{totalHours}} jam</h6>
+             </div>
+            <button *ngIf="showRegisterButton" type="button" class="btn btn-primary btn-lg mt-5" (click)="enrollNow()"><small><b>DAFTAR SEKARANG</b></small></button>
+            <button *ngIf="isEnded" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>PENDAFTARAN DITUTUP</b></small></button>
+            <button *ngIf="isEnrolled" type="button" class="btn btn-primary btn-lg mt-5" (click)="classDashboard()"><small><b>LIHAT KELAS</b></small></button>
+            <button *ngIf="isFull" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>KUOTA PENUH</b></small></button>
+            <!-- <button *ngIf="isTutor" type="button" class="btn btn-secondary btn-lg mt-5" disabled><small><b>TIDAK TERSEDIA</b></small></button>     -->
+        </span>
+    </div>
+
+    <div class="content-item container bg-white rounded shadow-lg">
+        <ul class="nav nav-tabs mt-5 pt-3" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Informasi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Silabus</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active p-4" id="tabs-1" role="tabpanel" [(ngModel)]="dtlClass" ngDefaultControl>
+                <div *ngIf="loading">
+                    <p-skeleton width="8rem" height="2rem" styleClass="mb-2"></p-skeleton>
+                    <p-divider></p-divider>
+                    <p-skeleton height="1rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton height="1rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton height="1rem" styleClass="mb-2"></p-skeleton>
+                </div>
+                <div *ngIf="!loading">
+                    <h4>Deskripsi</h4>
+                    <p-divider></p-divider>
+                    <p>{{dtlClass.idClass.description}}</p>
+                </div>
+
+                <div *ngIf="loading" class="mt-5">
+                    <p-skeleton width="8rem" height="2rem" styleClass="mb-2"></p-skeleton>
+                    <p-divider></p-divider>
+                    <table>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </th>
+                            <td>
+                                <p-skeleton width="10rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div *ngIf="!loading" class="mt-5">
+                    <h4>Jadwal</h4>
+                    <p-divider></p-divider>
+                    <table>
+                        <tr>
+                            <th>Tanggal mulai</th>
+                            <td> &nbsp; : &nbsp;&nbsp;&nbsp; </td>
+                            <td>{{dtlClass.startDate | date:'longDate'}}</td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal selesai</th>
+                            <td>&nbsp; : &nbsp;&nbsp;&nbsp;</td>
+                            <td>{{dtlClass.endDate | date:'longDate'}}</td>
+                        </tr>
+                        <tr>
+                            <th>Jam</th>
+                            <td>&nbsp; : &nbsp;&nbsp;&nbsp;</td>
+                            <td>{{dtlClass.startTime}} - {{dtlClass.endTime}} WIB</td>
+                        </tr>
+                        <tr>
+                            <th>Kuota peserta</th>
+                            <td>&nbsp; : &nbsp;&nbsp;&nbsp;</td>
+                            <td>{{dtlClass.idClass.quota}} orang</td>
+                        </tr>
+                        <tr>
+                            <th>Peserta terdaftar</th>
+                            <td>&nbsp; : &nbsp;&nbsp;&nbsp;</td>
+                            <td>{{dtlClass.totalParticipant}} orang</td>
+                        </tr>
+                    </table>
+                </div>
+                <div *ngIf="loading" class="mt-5">
+                    <p-skeleton width="10rem" height="2rem" styleClass="mb-2"></p-skeleton>
+                    <p-divider></p-divider>
+                    <div class="tutor-profile d-lg-flex">
+                        <p-skeleton styleClass="mr-3" width="100px" height="100px"></p-skeleton>
+                        <span>
+                            <p-skeleton width="10rem" height="2rem" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton width="15rem" height="1rem" styleClass="mb-2"></p-skeleton>
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="!loading" class="mt-5">
+                    <h4>Profil Tutor</h4>
+                    <p-divider></p-divider>
+
+                    <div class="tutor-profile d-lg-flex">
+                        <img class="shadow rounded mr-3" src="{{dtlClass.idClass.idTutor.idProfile.idFile.file ? 'data:image/png;base64,'+dtlClass.idClass.idTutor.idProfile.idFile.file : defaultImg}}" alt="">
+                        <span>
+                            <h5>{{dtlClass.idClass.idTutor.idProfile.fullName}}</h5>
+                            <p><i class="pi pi-envelope mr-2"></i>{{dtlClass.idClass.idTutor.idProfile.email}}</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane mx-auto p-4" id="tabs-2" role="tabpanel">
+                <div class="d-lg-flex d-md-flex justify-content-between">
+                    <h4 class="align-self-end">Daftar Modul</h4>
+                    <div class="form-group has-search align-self-end">
+                        <span class="fa fa-search form-control-feedback"></span>
+                        <input type="email" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Cari Modul" autofocus>
+                    </div>
+                </div>
+                <p-divider></p-divider>
+                <div class="modul mb-2 d-flex" *ngFor="let m of listModules | moduleFilter : searchText">
+                    <div class="tag"></div>
+                    <h6 class="mt-2 ml-2 align-self-center">{{m.idModule.moduleName}}</h6>
+                </div>
+            </div>
+
+        </div>
+    </div>

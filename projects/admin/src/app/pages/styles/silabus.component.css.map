@@ -1,0 +1,13 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AAAA,eAAe,CAAC;EACZ,OAAO,EAAE,KAAK;CACf;;AAEH,AAAA,SAAS,CAAC;EACN,YAAY,EAAE,IAAI;EAClB,KAAK,ECWC,wBAAwB;CDV/B;;AAED,MAAM,EAAE,SAAS,EAAE,KAAK;EACtB,AAAA,KAAK,CAAA;IACH,KAAK,EAAE,KAAK;GACb;EAED,AAAA,KAAK,AAAA,SAAS,CAAC,SAAS,CAAA;IACtB,KAAK,EAAE,IAAI;GACZ;;;AAGH,AAAA,KAAK,AAAA,SAAS,CAAC,SAAS,CAAA;EACtB,KAAK,EAAE,eAAe;CACvB",
+    "sources": [
+        "../silabus/silabus.component.scss",
+        "../../styles/colors.scss",
+        "../../styles/font.scss",
+        "../../styles/variables.scss",
+        "../../styles/colors.scss"
+    ],
+    "names": [],
+    "file": "silabus.component.css"
+}

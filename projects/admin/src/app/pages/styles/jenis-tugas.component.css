@@ -1,0 +1,20 @@
+.mat-icon {
+  margin-right: 15px;
+  color: rgba(110, 110, 110, 0.6);
+}
+
+:host::ng-deep .p-datepicker {
+  margin-top: 470px;
+  height: 430px;
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 600px;
+  }
+}
+
+:host::ng-deep .p-dialog {
+  width: auto !important;
+}
+/*# sourceMappingURL=jenis-tugas.component.css.map */

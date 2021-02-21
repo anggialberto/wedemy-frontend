@@ -1,0 +1,113 @@
+<!-- <button (click)="check()" class="btn btn-primary">Check</button> -->
+<div class="card px-4 py-4">
+  <p-toolbar styleClass="p-mb-4 d-none d-md-flex flex-md-row justify-content-md-end">
+    <button (click)="setStatusPresence(selectedParticipants, approvements.ACCEPT)" pButton pRipple label="Terima"
+      icon="pi pi-check" class="p-button-success p-mr-2" [disabled]="selectedParticipants.length === 0"></button>
+    <button (click)="setStatusPresence(selectedParticipants, approvements.REJECT)" pButton pRipple label="Tolak"
+      icon="pi pi-ban" class="p-button-danger p-mr-2" [disabled]="selectedParticipants.length === 0"></button>
+    <button (click)="refresh()" pButton pRipple label="Muat Ulang" icon="pi pi-refresh"
+      class="p-button-primary p-mr-2"></button>
+  </p-toolbar>
+
+  <p-toolbar styleClass="p-mb-4 d-md-none d-flex flex-row justify-content-center">
+    <button (click)="setStatusPresence(selectedParticipants, approvements.ACCEPT)" pButton pRipple label="Terima"
+      icon="pi pi-check" class="p-button-success btn-block p-mb-2" [disabled]="selectedParticipants.length === 0"></button>
+    <button (click)="setStatusPresence(selectedParticipants, approvements.REJECT)" pButton pRipple label="Tolak"
+      icon="pi pi-ban" class="p-button-danger btn-block p-mb-2" [disabled]="selectedParticipants.length === 0"></button>
+    <button (click)="refresh()" pButton pRipple label="Segarkan" icon="pi pi-refresh"
+      class="p-button-primary btn-block"></button>
+  </p-toolbar>
+
+
+
+  <p-table #dt [value]="participants" [scrollable]="true" [(selection)]="selectedParticipants"
+    dataKey="idPresence.idUser.id" styleClass="p-datatable-participant" [rowHover]="true" [rows]="10"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading" [paginator]="true"
+    currentPageReportTemplate="Menampilkan {first} sampai {last} dari {totalRecords} data" [filterDelay]="0"
+    [globalFilterFields]="['idPresence.idUser.idProfile.fullName']">
+    <ng-template pTemplate="caption">
+      <div class="table-header p-d-flex p-jc-between">
+        Daftar Peserta
+        <span class="p-input-icon-right">
+          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Cari nama peserta..." />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="colgroup" let-columns>
+      <colgroup>
+        <col style="width: 50px;">
+        <col style="width: 60px;">
+        <col style="width: 100px;">
+        <col style="width: 85px;">
+        <col style="width: 120px;">
+        <col style="width: 120px;">
+      </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <p-checkbox (onChange)="selectAll($event.checked)"></p-checkbox>
+        </th>
+        <th>No</th>
+        <th>Nama Peserta</th>
+        <th>Waktu</th>
+        <th>Status</th>
+        <th>Aksi</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-participant let-rowIndex="rowIndex">
+      <tr [pSelectableRow]="participant" [pSelectableRowIndex]="rowIndex">
+        <td>
+          <p-tableCheckbox [value]="participant" [disabled]="participant.idApprovement.code !== approvements.PENDING 
+            || participant.idApprovement.code === approvements.ABSENT">
+          </p-tableCheckbox>
+        </td>
+        <td>
+          <span class="p-column-title">{{rowIndex + 1}}</span>
+        </td>
+        <td>
+          <span class="p-column-title">{{participant.idPresence.idUser.idProfile.fullName}}</span>
+        </td>
+        <td>
+          <span class="p-column-title">{{participant.idPresence.presenceTime || "Tidak ada"}}</span>
+        </td>
+        <td>
+          <span *ngIf="participant.idApprovement.code === approvements.ABSENT" class="badge badge-danger">
+            ABSENT
+          </span>
+          <span *ngIf="participant.idApprovement.code === approvements.ACCEPT" class="badge badge-success">
+            ACCEPTED
+          </span>
+          <span *ngIf="participant.idApprovement.code === approvements.PENDING" class="badge badge-warning">
+            PENDING
+          </span>
+          <span *ngIf="participant.idApprovement.code === approvements.REJECT" class="badge badge-danger">
+            REJECTED
+          </span>
+        </td>
+        <td>
+
+          <div class="d-flex">
+            <button (click)="setStatusPresence(participant, approvements.ACCEPT)" class="btn btn-success mr-2"
+              [disabled]="participant.idApprovement.code !== approvements.PENDING 
+                || participant.idApprovement.code === approvements.ABSENT">
+              <i class="pi pi-check"></i>
+            </button>
+
+            <button (click)="setStatusPresence(participant, approvements.REJECT)" [disabled]="participant.idApprovement.code !== approvements.PENDING 
+                || participant.idApprovement.code === approvements.ABSENT" class="btn btn-danger">
+              <i class="pi pi-ban"></i>
+            </button>
+          </div>
+
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">Peserta Tidak ditemukan</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

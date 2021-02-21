@@ -1,0 +1,14 @@
+.box {
+    width: 50vw;
+}
+
+.main {
+    height: 100vh;
+    padding-top: 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .box {
+        width: 80vw;
+    }
+}

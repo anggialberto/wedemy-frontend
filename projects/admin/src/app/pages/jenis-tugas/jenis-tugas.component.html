@@ -1,0 +1,102 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h1>Tipe Materi</h1>
+    </mat-toolbar>
+
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 pb-5 justify-content-center">
+            <div class="card">
+                <p-toolbar class="p-m-3">
+                    <ng-template pTemplate="left">
+                        <button pButton pRipple label="Tambah" icon="pi pi-plus" (click)="openNew()"
+                            class="p-button-success p-mr-2"></button>
+                    </ng-template>
+                    <ng-template pTemplate="right">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                    placeholder="Cari..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                </p-toolbar>
+                <p-table #dt [value]="listJenisTugas" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['learningMaterialTypeName', 'code']" [rowHover]="true" dataKey="id"
+                    class="p-m-3" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="code">Kode<p-sortIcon field="code"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="learningMaterialTypeName">Nama<p-sortIcon
+                                    field="learningMaterialTypeName"></p-sortIcon>
+                            </th>
+                            <th>Aksi</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-listJenisTugas>
+                        <tr>
+                            <td>{{listJenisTugas.code}}</td>
+                            <td>{{listJenisTugas.learningMaterialTypeName}}</td>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editLearningMaterialType(listJenisTugas)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                                    (click)="deleteLearningMaterialType(listJenisTugas.id)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            Terdapat {{listJenisTugas ? listJenisTugas.length : 0 }} Jenis Silabus.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+
+
+            <p-dialog [(visible)]="productDialog" class="p-mt-5" header="Tipe Materi" [modal]="true"
+                styleClass="p-fluid" (onHide)="hideDialog()">
+                <ng-template pTemplate="content">
+                    <form name="jenisTugasForm">
+                        <div class="p-field">
+                            <label for="code">Kode Tipe Materi</label>
+                            <input type="text" name="code" required pInputText
+                                (ngModelChange)="validation($event,'code')" id="code"
+                                [(ngModel)]="learningMaterialType.code" maxlength="6" /><small *ngIf="!codeValid"
+                                class="p-error">{{codeErrMsg}}</small>
+                        </div>
+                        <div class="p-field">
+                            <label for="type">Nama Tipe Materi</label>
+                            <input type="text" name="type" required pInputText
+                                (ngModelChange)="validation($event,'name')" id="type"
+                                [(ngModel)]="learningMaterialType.learningMaterialTypeName" maxlength="50" /><small
+                                *ngIf="!nameValid" class="p-error">{{nameErrMsg}}</small>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class="m-2">
+                                <button pButton pRipple label="Kembali" icon="pi pi-times"
+                                    class="p-button-raised p-button-rounded p-button-danger"
+                                    (click)="hideDialog()"></button>
+                            </div>
+                            <div class="mt-2">
+                                <ng-template #insert>
+                                    <button pButton pRipple label="Simpan" icon="pi pi-check"
+                                        class="p-button-raised p-button-rounded p-button-success"
+                                        (click)="insertLearningMaterialType()"></button>
+                                </ng-template>
+                                <button pButton pRipple label="Simpan" *ngIf="update; else insert" icon="pi pi-check"
+                                    class="p-button-raised p-button-rounded p-button-success"
+                                    (click)="updateLearningMaterialType()"></button>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </p-dialog>
+            <p-confirmDialog></p-confirmDialog>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</app-layout>

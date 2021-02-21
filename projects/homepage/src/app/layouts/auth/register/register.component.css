@@ -1,0 +1,49 @@
+.center {
+    margin: 0;
+    margin-top: 100px;
+}
+
+.login-card {
+    width: 30%;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.label-float {
+    float: bottom !important;
+    height: fit-content;
+}
+
+@media only screen and (min-width: 0px) {
+    .login-card {
+        width: 90%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .login-card {
+        width: 50%;
+    }
+}
+
+.h-text {
+    color: #2196F3;
+}
+
+@media only screen and (min-width: 1100px) {
+    .login-card {
+        width: 30%;
+    }
+}
+
+p {
+    font-size: medium;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Quicksand', sans-serif !important;
+}

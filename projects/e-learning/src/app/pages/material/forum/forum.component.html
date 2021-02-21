@@ -1,0 +1,53 @@
+<div class="row forum-container bg-light shadow-sm mb-5" style="margin-bottom: 500px;">
+    <div class="w-100">
+        <div class="mb-4">
+            <p-editor [(ngModel)]="comment" [style]="{'height':'200px', 'width': '100%'}">
+            </p-editor>
+            <div class="text-right">
+                <button pButton pRipple class="mt-2" type="button" icon="pi pi-send" (click)="post()" label="Kirim"></button>
+            </div>
+        </div>
+
+        <ng-template ngFor let-forum [ngForOf]="forums" let-i="index">
+            <div class="p-grid comments mb-2 bg-white border rounded">
+
+                <img class="rounded-circle mr-3 mb-1" src="{{forum.forum.idUser.idProfile.idFile.file ? 'data:image/png;base64,'+forum.forum.idUser.idProfile.idFile.file : defaultImg}}" width="48" height="48">
+
+                <div class="d-flex flex-column">
+                    <div class="d-sm-flex flex-column">
+                        <p class="font-weight-bold">{{forum.forum.idUser.idProfile.fullName}}</p>
+                        <p style="margin-top: -10px;"><small>{{ forum.forum.createdAt | dateAgo}}</small></p>
+                    </div>
+                    <div class="comment" style="margin-top: -10px;" [innerHTML]="forum.forum.contentText"></div>
+
+                </div>
+                <div class="p-col-12 text-right">
+                    <button pButton pRipple (click)="showReplyEditor(i)" type="button" label="Balas" class="p-button-primary p-button-text"></button>
+                </div>
+            </div>
+            <div class="replies">
+                <div *ngIf="isShowReplyEditor === i" class="reply-section mb-3">
+                    <p-editor [(ngModel)]="replyComment" [style]="{'height':'100px', 'width': '100%'}">
+                    </p-editor>
+                    <div class="text-right">
+                        <button pButton pRipple class="mt-2" type="button" icon="pi pi-send" (click)="reply(forum.forum.id)" label="Balas"></button>
+                    </div>
+                </div>
+                <ng-template ngFor let-reply [ngForOf]="forum.detailForums" let-i="index">
+                    <div class="d-flex comments mb-2 bg-white border rounded">
+                        <img class="rounded-circle mr-3 photo-profile mb-1" src="{{reply.idUser.idProfile.idFile.file ? 'data:image/png;base64,'+reply.idUser.idProfile.idFile.file : defaultImg}}" width="48" height="48">
+                        <div class="d-flex flex-column">
+                            <div class="d-sm-flex flex-column">
+                                <p class="font-weight-bold">{{reply.idUser.idProfile.fullName}}</p>
+                                <p style="margin-top: -10px;"><small>{{ reply.createdAt | dateAgo}}</small></p>
+                            </div>
+                            <div class="comment" [innerHTML]="reply.contentText"></div>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </div>
+
+        </ng-template>
+    </div>
+</div>

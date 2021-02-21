@@ -1,0 +1,78 @@
+<div class="content container ">
+    <div class="p-grid p-formgrid p-fluid header">
+        <div class="p-col-12 p-p-5 rounded border bg-custom">
+            <span>
+                <h2><b>Daftar Kelas</b></h2>
+            </span>
+            <p-divider></p-divider>
+            <span>
+                <p>Daftar kelas pada Wedemy yang dapat dipilih sesuai dengan minat kalian! </p>
+            </span>
+        </div>
+    </div>
+
+    <div class="p-grid p-formgrid p-fluid">
+        <div class="p-col-12 p-md-3 p-lg-3">
+            <div class="border rounded p-p-3">
+                <span>
+                    <h4>Filter</h4>
+                </span>
+                <div class="form-group has-search">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input type="email" class="form-control" id="search-text" aria-describedby="search-text" [(ngModel)]="searchText" placeholder="Temukan kelas" autofocus>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="loading" class="p-col-12 p-md-9 p-lg-9 mt-1 pt-3 text-center">
+            <p-progressSpinner styleClass="custom-spinner" strokeWidth="5" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
+
+        </div>
+
+
+        <div *ngIf="!loading" class="p-col-12 p-md-9 p-lg-9">
+            <section class="cards p-grid p-formgrid p-fluid">
+                <div class="p-col-12 p-md-6 p-lg-6" *ngFor="let c of listClasses | classFilter: searchText">
+                    <div class="box border">
+                        <div class="p-grid ml-1 mt-3">
+                            <div class="p-col img-square-wrapper mb-2">
+                                <img src="data:image/png;base64,{{c.idClass.idFile.file}}" alt="">
+                            </div>
+                            <div class="p-col text-left">
+                                <h5 class="class-name">{{c.idClass.className}}</h5>
+                                <div class="mb-2">
+                                    <span class="badge badge-success" *ngIf="c.status==1">Pendaftaran Dibuka</span>
+                                    <span class="badge badge-secondary" *ngIf="c.status==2">Pendaftaran Ditutup</span>
+                                    <span class="badge badge-danger" *ngIf="c.status==3">Kuota Penuh</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-grid p-jc-between p-ml-2 p-mt-2">
+                            <div class="p-col">
+                                <p><i class="pi pi-users"></i> {{c.idClass.quota}} peserta</p>
+                            </div>
+                            <div class="p-col">
+                                <p><i class="pi pi-book"></i> {{c.totalModules}} modul</p>
+
+                            </div>
+                            <div class="p-col">
+                                <p><i class="pi pi-clock"></i> {{c.totalHours}} jam</p>
+                            </div>
+                        </div>
+                        <div class="p-grid p-ml-2">
+                            <div class="pt-1 p-col text-left">
+                                <p>{{c.idClass.description}}</p>
+                            </div>
+                        </div>
+                        <div class="p-grid p-mr-2 text-right">
+                            <div class="pt-1 p-col">
+                                <button type="button" (click)='showDetail(c.id)' class="btn btn-outline-primary mb-3"><small>SELENGKAPNYA</small></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+@import "../../styles/colors.scss";
+@import "../../styles/font";
+@import "../../styles/variables";
+
+.mat-icon {
+  margin-right: 15px;
+  color: $sidebar-icon-color;
+}
+
+:host::ng-deep .p-datepicker  {
+  margin-top: 470px;
+  // height: 430px;
+  }
+
+  @media (max-width: 576px) {
+    :host::ng-deep .p-toolbar{
+      width: 828px;
+    }
+
+    .card{
+      width: 860px;
+    }
+  }
+
+  @media (max-width: 768px) {
+
+    .card{
+      width: 1400px;
+    }
+  }

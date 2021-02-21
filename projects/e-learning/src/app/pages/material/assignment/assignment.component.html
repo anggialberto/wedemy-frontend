@@ -1,0 +1,63 @@
+<!-- <button (click)="check()" class="btn btn-primary">Check</button> -->
+<div class="card px-4 py-4">
+    <p-toolbar styleClass="p-mb-4 d-none d-md-flex flex-md-row justify-content-md-end">
+        <button (click)="setAssignmentScore()" pButton pRipple label="Simpan" icon="pi pi-save" class="p-button-success p-mr-2"></button>
+        <button (click)="refresh()" pButton pRipple label="Muat Ulang" icon="pi pi-refresh" class="p-button-primary p-mr-2"></button>
+    </p-toolbar>
+
+    <p-toolbar styleClass="p-mb-4 d-md-none d-flex flex-row justify-content-center">
+        <button (click)="setAssignmentScore()" pButton pRipple label="Simpan" icon="pi pi-save" class="p-button-success btn-block p-mb-2"></button>
+        <button (click)="refresh()" pButton pRipple label="Muat Ulang" icon="pi pi-refresh" class="p-button-primary btn-block"></button>
+    </p-toolbar>
+
+    <p-table #dt [value]="assignments" [scrollable]="true" [(selection)]="selectedAssignment" dataKey="id" styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Menampilkan {first} sampai {last} dari {totalRecords} data" [filterDelay]="0" [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','averageValue']">
+        <ng-template pTemplate="caption">
+            <div class="table-header p-d-flex p-jc-between">
+                Daftar Peserta
+                <span class="p-input-icon-right">
+          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Cari nama perserta..." />
+        </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col style="width: 50px;">
+                <col style="width: 100px;">
+                <col style="width: 100px;">
+                <col style="width: 100px;">
+                <col style="width: 100px;">
+            </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th>No</th>
+                <th>Nama Peserta</th>
+                <th>Waktu</th>
+                <th>Berkas</th>
+                <th>Nilai</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-assignment let-i="rowIndex">
+            <tr class="p-selectable-row">
+                <td>
+                    <span class="p-column-title">{{i + 1}}</span>
+                </td>
+                <td>
+                    <span class="p-column-title">{{assignment.idAssignmentSubmission.idParticipant.idProfile.fullName}}</span>
+                </td>
+                <td>
+                    <span class="p-column-title">{{assignment.idAssignmentSubmission.submitTime || 'Tidak ada'}}</span>
+                </td>
+                <td>
+                    <span *ngIf="!assignment.idAssignmentSubmission.idFile.file" class="p-column-title">Tidak ada</span>
+                    <span *ngIf="assignment.idAssignmentSubmission.idFile.file" (click)="downloadFileFromBlob(assignment.idAssignmentSubmission.idFile, assignment.idAssignmentSubmission.idFile.name )" class="p-column-title link">{{assignment.idAssignmentSubmission.idFile.file ? assignment.idAssignmentSubmission.idFile.name : 'Tidak ada'}}</span>
+                </td>
+                <td>
+                    <input [(ngModel)]="assignment.score" (keypress)="keyPress($event)" (ngModelChange)="onChangeScore(assignment)" type="text" size="2" [disabled]="!assignment.idAssignmentSubmission.idFile.file">
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

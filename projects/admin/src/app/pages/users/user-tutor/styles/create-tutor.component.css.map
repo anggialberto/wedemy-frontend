@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,eAAe,CAAC;EACZ,OAAO,EAAE,KAAK;CACf;;AAED,AAAA,EAAE,CAAA;EACF,KAAK,EAAE,KAAK;CACX;;AAED,AAAA,YAAY,CAAA;EACV,gBAAgB,EAAC,OAAO;CACzB;;AAEF,AAAA,oBAAoB,CAAA;EACnB,KAAK,EAAE,KAAK;CACX;;AAED,MAAM,EAAE,SAAS,EAAE,KAAK;EACtB,AAAA,KAAK,AAAA,SAAS,CAAC,SAAS,CAAA;IACtB,KAAK,EAAE,KAAK;GACb",
+    "sources": [
+        "../create-tutor/create-tutor.component.scss"
+    ],
+    "names": [],
+    "file": "create-tutor.component.css"
+}

@@ -1,0 +1,31 @@
+.mat-icon {
+  margin-right: 15px;
+  color: rgba(110, 110, 110, 0.6);
+}
+
+:host::ng-deep .p-calendar .p-inputtext {
+  height: 40px;
+}
+
+:host::ng-deep .p-calendar-w-btn {
+  height: 40px;
+}
+
+h5 {
+  color: white;
+}
+
+.card-header {
+  background-color: #ffc260;
+}
+
+.btn-primary-outline {
+  color: white;
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 860px;
+  }
+}
+/*# sourceMappingURL=create-kelas.component.css.map */

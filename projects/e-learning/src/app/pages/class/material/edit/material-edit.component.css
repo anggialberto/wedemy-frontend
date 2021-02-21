@@ -1,0 +1,9 @@
+.back-button {
+    cursor: pointer;
+    color: dodgerblue;
+}
+
+.back-button:hover {
+    background-color: aliceblue;
+    width: fit-content;
+}

@@ -1,0 +1,85 @@
+<app-header></app-header>
+<!-- <p-toast [baseZIndex]="5000"></p-toast> -->
+<!-- <p-toast position="top-center" key="success" (onClose)="onReject()" [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="p-text-center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                <h4>{{message.summary}}</h4>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="p-grid p-fluid">
+                <div class="p-col-12">
+                    <button type="button" pButton (click)="onConfirm()" label="Masuk" class="p-button-primary"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</p-toast> -->
+
+<div class="container center login-card mx-auto">
+    <div class="row shadow p-3 mb-5 bg-white rounded">
+        <div class="col-12">
+            <h2 class="text-center h-text">
+                <b>DAFTAR</b>
+            </h2>
+            <p-divider></p-divider>
+        </div>
+
+        <form class="col-12 mt-3" name="registerForm">
+            <div class="p-fluid">
+                <div class="p-field p-col">
+                    <span class="p-float-label">
+                        <input required [(ngModel)]="participant.idProfile.fullName"
+                            [value]="participant.idProfile.fullName" class="rounded-pill" type="text" id="fullname"
+                            name="fullname" aria-describedby="fullname-help"
+                            (ngModelChange)="fullnameValidation($event)" pInputText maxlength="50">
+                        <label class="pl-2" for="fullname">Nama Lengkap</label>
+                    </span>
+                    <small *ngIf="!fullnameValid" id="fullname-help" class="p-error ml-3">{{fullnameErrorMsg}}</small>
+
+                </div>
+                <div class="p-field p-col">
+                    <span class="p-float-label">
+                        <input [(ngModel)]="participant.idProfile.email" [value]="participant.idProfile.email"
+                            class="rounded-pill" type="email" id="email" name="email" aria-describedby="email-help"
+                            (ngModelChange)="emailValidation($event)" required
+                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" pInputText maxlength="50">
+                        <label class="pl-2" for="email">E-mail</label>
+                    </span>
+                    <small *ngIf="!emailValid" id="email-help" class="p-error ml-3">{{emailErrorMsg}}</small>
+                </div>
+                <div class="p-field p-col">
+                    <span class="p-float-label">
+                        <input required="true" [(ngModel)]="participant.username" [value]="participant.username"
+                            class="rounded-pill" type="text" id="username" name="username"
+                            aria-describedby="username-help" (ngModelChange)="usernameValidation($event)" pInputText
+                            maxlength="64">
+                        <label class="pl-2" for="username">Nama Pengguna</label>
+                    </span>
+                    <small *ngIf="!usernameValid" id="username-help" class="p-error ml-3">{{usernameErrorMsg}}</small>
+                </div>
+                <div class="p-field p-col">
+                    <span class="p-float-label">
+                        <input required="true" [(ngModel)]="participant.userPassword" [value]="participant.userPassword"
+                            class="rounded-pill" type="password" id="password" name="password"
+                            aria-describedby="password-help" (ngModelChange)="passwordValidation($event)" required
+                            minlength="8" maxlength="128" pPassword>
+                        <label class="pl-2" for="password">Kata Sandi</label>
+                    </span>
+                    <small *ngIf="!passwordValid" id="password-help" class="p-error ml-3">{{passwordErrorMsg}}</small>
+                </div>
+                <div class="text-center p-field p-col-12 mt-3">
+                    <button pButton type="button" label="D A F T A R" (click)="save()" class="btn-block p-button-rounded"></button>
+                </div>
+                <div class="form-group d-flex justify-content-center mt-3">
+                    <p class="mr-2">Sudah memiliki akun?</p>
+                    <a routerLink="/auth/login">
+                        <p class="text-center">MASUK</p>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,39 @@
+<section class="section-title mb-5 text-center text-sm-left">
+    <h2>Instruktur</h2>
+</section>
+
+<div *ngIf="isLoading" class="profile-wrapper p-grid">
+    <div class="p-col-12 p-sm-2 mb-4 photo-name">
+        <p-skeleton shape="circle" size="10rem" styleClass="mx-auto"></p-skeleton>
+        <div class="instructor-name">
+            <p-skeleton height="2rem" width="10rem" styleClass="p-mb-2 mx-auto"></p-skeleton>
+        </div>
+    </div>
+    <div class="p-col-12 p-lg-auto p-md-9 instructor-bio">
+
+        <div>
+            <p-skeleton height="1rem" styleClass="p-mb-2 p-mr-6"></p-skeleton>
+            <p-skeleton height="1rem" styleClass="p-mb-2 p-mr-6"></p-skeleton>
+            <p-skeleton height="1rem" styleClass="p-mb-2 p-mr-6"></p-skeleton>
+            <p-skeleton height="1rem" styleClass="p-mb-2 p-mr-6"></p-skeleton>
+            <p-skeleton height="1rem" styleClass="p-mb-2 p-mr-6"></p-skeleton>
+            <p-skeleton height="1rem" styleClass="p-mb-2 p-mr-6"></p-skeleton>
+            <p-skeleton height="1rem" styleClass="p-mb-2 p-mr-6"></p-skeleton>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!isLoading" class="profile-wrapper p-grid">
+    <div class="p-col-12 p-lg-2 p-md-3 mb-4 photo-name">
+        <img class="mx-auto instructor-img rounded-circle" src="{{tutor.idProfile.idFile.file ? 'data:image/png;base64,'+ tutor.idProfile.idFile.file : 'assets/img/profile-default.jpeg'}}" alt="">
+        <div class="instructor-name text-center">
+            {{tutor.idProfile.fullName}}
+        </div>
+    </div>
+
+    <div class="p-col-12 p-lg-auto p-md-9 instructor-bio">
+        <div>
+            {{tutor.idProfile.bio}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+a {
+    text-decoration: none;
+}
+
+section.section-title {
+    margin-bottom: 18px;
+    font-weight: bold;
+    font-family: "Quicksand", sans-serif;
+}
+
+.course-section .section-title {
+    background: #e8e8e8;
+    /* padding: 10px 16px; */
+    margin: 0;
+    font-size: 17px;
+    font-weight: bold;
+    border-bottom: 1px solid #fff;
+    font-family: "Quicksand", sans-serif;
+}
+
+.material-name {
+    font-size: 16px;
+}
+
+.material-name.deactive {
+    cursor: not-allowed;
+}
+
+.course-section ul.section-list .section-item {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-bottom: 1px solid #fff;
+}
+
+.course-section ul.section-list .section-item {
+    margin-left: -40px;
+    padding-left: 20px;
+    background-color: #f0f0f0;
+    font-family: "Montserrat", sans-serif;
+}
+
+.course-section ul.section-list .section-item .material-icon {
+    margin-right: 10px;
+}
+
+.course-section ul.section-list .section-item .item {
+    text-decoration: none;
+    cursor: pointer;
+    color: #5d6a79;
+    font-weight: 500;
+}
+
+.btn-add {
+    background-color: #2b50b4;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.btn-add:hover {
+    background-color: #0f3499;
+}
+
+.mode-option {
+    width: 150px;
+}

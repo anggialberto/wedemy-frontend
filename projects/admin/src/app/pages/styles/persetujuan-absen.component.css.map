@@ -1,0 +1,13 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AAAA,SAAS,CAAC;EACR,YAAY,EAAE,IAAI;EAClB,KAAK,ECeG,wBAAwB;CDdjC;;AAED,MAAM,EAAE,SAAS,EAAE,KAAK;EACtB,AAAA,KAAK,CAAA;IACH,KAAK,EAAE,KAAK;GACb;;;AAGH,AAAA,KAAK,AAAA,SAAS,CAAC,SAAS,CAAA;EACtB,KAAK,EAAE,eAAe;CACvB",
+    "sources": [
+        "../persetujuan-absen/persetujuan-absen.component.scss",
+        "../../styles/colors.scss",
+        "../../styles/font.scss",
+        "../../styles/variables.scss",
+        "../../styles/colors.scss"
+    ],
+    "names": [],
+    "file": "persetujuan-absen.component.css"
+}

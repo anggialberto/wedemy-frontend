@@ -1,0 +1,186 @@
+<div class="main p-py-6">
+    <div class="container">
+        <div *ngIf="isLoading" class="p-grid bg-white rounded shadow" [(ngModel)]="myAccount" ngDefaultControl>
+            <div class="p-col-12 p-lg-3 p-md-12 left-side">
+                <div class="img-square-wrapper">
+                    <p-skeleton width="250px" height="250px"></p-skeleton>
+                </div>
+                <div class="p-mt-3 text-center">
+                    <button pButton pRipple type="button" (click)="showMaximizableDialog()" icon="pi pi-pencil" label="Edit Profil" class="p-button-raised p-button-success"></button>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-lg-9 p-md-12">
+                <p-skeleton width="25rem" height="3rem" styleClass="mt-2"></p-skeleton>
+                <p-skeleton height="1rem" styleClass="p-mt-2"></p-skeleton>
+                <p-skeleton height="1rem" styleClass="p-mt-2"></p-skeleton>
+                <table>
+                    <tr>
+                        <th>
+                            <p-skeleton width="8rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </th>
+                        <td> : </td>
+                        <td>
+                            <p-skeleton width="15rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p-skeleton width="8rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </th>
+                        <td> : </td>
+                        <td>
+                            <p-skeleton width="15rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p-skeleton width="8rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </th>
+                        <td> : </td>
+                        <td>
+                            <p-skeleton width="15rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p-skeleton width="8rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </th>
+                        <td> : </td>
+                        <td>
+                            <p-skeleton width="15rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p-skeleton width="8rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </th>
+                        <td> : </td>
+                        <td>
+                            <p-skeleton width="15rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <p-skeleton width="8rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </th>
+                        <td> : </td>
+                        <td>
+                            <p-skeleton width="15rem" height="1rem" styleClass="p-mt-2"></p-skeleton>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="!isLoading" class="p-grid bg-white rounded shadow" [(ngModel)]="myAccount" ngDefaultControl>
+            <div class="p-col-12 p-lg-3 p-md-12 left-side">
+                <div class="img-square-wrapper">
+                    <img src="{{myAccount.idProfile.idFile.file ? 'data:image/png;base64,'+myAccount.idProfile.idFile.file : defaultImg}}" alt="">
+                </div>
+                <div class="p-mt-3 text-center">
+                    <button pButton pRipple type="button" (click)="showMaximizableDialog()" icon="pi pi-pencil" label="Edit Profil" class="p-button-raised p-button-success"></button>
+                </div>
+            </div>
+
+            <div class="p-col-12 p-lg-9 p-md-12">
+                <h2 class=""><b>{{myAccount.idProfile.fullName}}</b></h2>
+                <p>{{myAccount.idProfile.bio}}</p>
+                <table>
+                    <tr>
+                        <th>Email</th>
+                        <td> : </td>
+                        <td>{{myAccount.idProfile.email}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nomor HP</th>
+                        <td> : </td>
+                        <td>{{myAccount.idProfile.phone}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nomor Identitas</th>
+                        <td> : </td>
+                        <td>{{myAccount.idProfile.idNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tempat Lahir</th>
+                        <td> : </td>
+                        <td>{{myAccount.idProfile.birthPlace}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tanggal Lahir</th>
+                        <td> : </td>
+                        <td>{{myAccount.idProfile.birthDate | date:'longDate'}}</td>
+                    </tr>
+                    <tr>
+                        <th>Alamat</th>
+                        <td> : </td>
+                        <td>{{myAccount.idProfile.address}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Edit Informasi Profil" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <form (ngSubmit)="onSubmit()">
+        <div class="p-fluid">
+            <div class="text-center mb-4">
+                <label for="fileToUpload">
+
+                    <div class="profile-pic" style="background-image: url({{url}})">
+                        <span class="fa fa-camera"></span>
+                        <!-- <span>Change Image</span> -->
+                    </div>
+                </label>
+
+                <input (change)="onSelectFile($event)" class="form-control" accept=".png, .jpg, .jpeg" type="File" name="fileToUpload" id="fileToUpload">
+            </div>
+            <div class="p-field">
+                <label for="fullName">Nama Lengkap</label>
+                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.fullName" [value]="myAccount.idProfile.fullName" placeholder="{{myAccount.idProfile.fullName ? myAccount.idProfile.fullName : 'Masukkan Nama Lengkap'}}" id="fullName" type="text"
+                    pInputText>
+            </div>
+            <div class="p-field">
+                <label for="address">Bio</label>
+                <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.bio" [value]="myAccount.idProfile.bio" placeholder="{{myAccount.idProfile.bio ? myAccount.idProfile.bio : 'Masukkan Biodata Singkat'}}" class="form-control" id="address"
+                    type="text" rows="3"></textarea>
+            </div>
+            <div class="p-field">
+                <label for="email">Email</label>
+                <input [value]="myAccount.idProfile.email" placeholder="{{myAccount.idProfile.email ? myAccount.idProfile.email : 'Kosong'}}" id="email" type="email" disabled pInputText>
+            </div>
+            <div class="p-field">
+                <label for="phone">Nomor HP</label>
+                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.phone" [value]="myAccount.idProfile.phone" (ngModelChange)="phoneValidation($event)" placeholder="{{myAccount.idProfile.phone ? myAccount.idProfile.phone : 'Masukkan Nomor HP'}}"
+                    id="phone" type="text" pInputText maxlength="12">
+                <small *ngIf="!phoneIsValid" class="p-error">{{phoneErrMsg}}</small>
+            </div>
+            <div class="p-field">
+                <label for="idNumber">Nomor Identitas</label>
+                <input [ngModelOptions]="{standalone: true}" (ngModelChange)="numIdentity($event)" [(ngModel)]="myAccount.idProfile.idNumber" [value]="myAccount.idProfile.idNumber" placeholder="{{myAccount.idProfile.idNumber ? myAccount.idProfile.idNumber: 'Masukkan Nomor Identitas (misal: KTP, Paspor, Kartu Pelajar, dll)'}}"
+                    id="idNumber" type="text" maxlength="16" pInputText>
+                <small *ngIf="!ktpIsValid" class="p-error">{{ktpErrMsg}}</small>
+            </div>
+            <div class="p-field">
+                <label for="birthPlace">Tempat Lahir</label>
+                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.birthPlace" [value]="myAccount.idProfile.birthPlace" placeholder="{{myAccount.idProfile.birthPlace ? myAccount.idProfile.birthPlace : 'Masukkan Tempat Lahir'}}" id="birthPlace"
+                    type="text" pInputText>
+            </div>
+            <div class="p-field">
+                <label for="navigators">Tanggal Lahir</label>
+                <p-calendar [ngModelOptions]="{standalone: true}" dateFormat="yy-mm-dd" [(ngModel)]="myAccount.idProfile.birthDate" placeholder="{{myAccount.idProfile.birthDate? myAccount.idProfile.birthDate : 'Masukkan Tanggal Lahir'}}" [showIcon]="true" [monthNavigator]="true"
+                    [yearNavigator]="true" yearRange="1980:2025" inputId="navigators"></p-calendar>
+            </div>
+            <div class="p-field">
+                <label for="address">Alamat</label>
+                <textarea [ngModelOptions]="{standalone: true}" [(ngModel)]="myAccount.idProfile.address" [value]="myAccount.idProfile.address" placeholder="{{myAccount.idProfile.address ? myAccount.idProfile.address : 'Masukkan Alamat'}}" class="form-control" id="address"
+                    type="text" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="text-right">
+            <p-button icon="pi pi-check" type="submit" label="Simpan" styleClass="p-button-text"></p-button>
+        </div>
+    </form>
+</p-dialog>

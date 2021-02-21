@@ -1,0 +1,9 @@
+.page-container {
+    height: 100vh;
+    /* padding-top: 2rem; */
+    padding-bottom: 2rem;
+}
+
+.content {
+    min-height: 63vh;
+}

@@ -1,0 +1,59 @@
+<div *ngIf="isLoading" class="container p-px-5 mt-5">
+  <div class="border">
+    <p-skeleton height="3.5rem" styleClass=""></p-skeleton>
+  </div>
+  <div class="border p-4">
+    <p-skeleton styleClass="p-mb-2"></p-skeleton>
+    <p-skeleton styleClass="p-mb-2"></p-skeleton>
+    <p-skeleton styleClass="p-mb-2"></p-skeleton>
+    <p-skeleton styleClass="p-mb-5"></p-skeleton>
+    <p-skeleton width="8rem" height="3rem" styleClass="p-mb-2"></p-skeleton>
+  </div>
+  <div class="p-grid p-jc-center">
+    <p-skeleton width="15rem" height="3rem" styleClass="p-col p-mb-4 p-mt-4 p-mx-2"></p-skeleton>
+    <p-skeleton width="15rem" height="3rem" styleClass="p-col p-mb-4 p-mt-4 p-mx-2"></p-skeleton>
+  </div>
+  <p-skeleton width="100%" height="20rem" styleClass="p-mb-2"></p-skeleton>
+</div>
+
+<div *ngIf="!isLoading" class="container px-5 mt-5">
+  <div class="row main-material rounded">
+    <div class="d-flex h-100 w-100 p-2 bg-light border justify-content-start align-items-center">
+      <button pButton pRipple (click)="back()" type="button" icon="pi pi-arrow-left"
+        class="p-button-rounded p-button-secondary p-button-text mr-2"></button>
+      <h5 class="material-title">
+        {{material.idLearningMaterial.learningMaterialName}}
+      </h5>
+    </div>
+    <div class="content-class w-100 p-4 border">
+      <div class="content" [innerHTML]="material.idLearningMaterial.description"></div>
+      <button pButton pRipple type="button" icon="pi pi-download"
+        (click)="downloadFileFromBlob(material.idLearningMaterial.idFile)" label="Unduh File"></button>
+    </div>
+
+  </div>
+  <div class="col text-center">
+    <ul class="row justify-content-center list-unstyled">
+      <li routerLink="forum" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
+        routerLinkActive="active" class="tab-item">FORUM</li>
+
+      <ng-template [ngIf]="roleCode === roles.PARTICIPANT 
+        && ['TGS','UJN'].includes(material.idLearningMaterial.idLearningMaterialType.code)">
+        <li routerLink="answer" [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
+          routerLinkActive="active" class="tab-item">UNGGAH JAWABAN</li>
+      </ng-template>
+
+      <ng-template [ngIf]="roleCode === roles.TUTOR
+        && ['TGS','UJN'].includes(material.idLearningMaterial.idLearningMaterialType.code)">
+        <li routerLink="assignment"
+          [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
+          routerLinkActive="active" class="tab-item">TUGAS</li>
+      </ng-template>
+      <li *ngIf="roleCode === roles.TUTOR" routerLink="presence"
+        [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: idDetailModuleRegistration}"
+        routerLinkActive="active" class="tab-item">DAFTAR KEHADIRAN</li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+  <div class="mt-1">&nbsp;</div>
+</div>

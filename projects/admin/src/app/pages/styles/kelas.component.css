@@ -1,0 +1,27 @@
+.mat-icon {
+  margin-right: 15px;
+  color: rgba(110, 110, 110, 0.6);
+}
+
+:host::ng-deep .p-datepicker {
+  margin-top: 470px;
+}
+
+@media (max-width: 576px) {
+  :host::ng-deep .p-toolbar {
+    width: 828px;
+  }
+  .card {
+    width: 860px;
+  }
+}
+
+@media (max-width: 768px) {
+  :host::ng-deep .p-toolbar {
+    width: 1460px;
+  }
+  .card {
+    width: 1500px;
+  }
+}
+/*# sourceMappingURL=kelas.component.css.map */

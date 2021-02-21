@@ -1,0 +1,46 @@
+<div class="bg-light rounded p-4">
+    <div class="mb-5">
+        <table class="">
+            <tr>
+                <th>Batas waktu pengumpulan</th>
+                <td style="width: 1rem;">&nbsp;:</td>
+                <td *ngIf="isOverDueDate" class="due-date-over"><b>{{answer.idDetailModuleRegistration.scheduleDate | date:'longDate'}}, {{dueEndTime}}</b></td>
+                <td *ngIf="!isOverDueDate" class="due-date"><b>{{answer.idDetailModuleRegistration.scheduleDate | date:'longDate'}}, {{dueEndTime}}</b></td>
+            </tr>
+            <tr>
+                <th>Terakhir diubah</th>
+                <td style="width: 2rem;">&nbsp;:</td>
+                <td *ngIf="lastModified == 'Kosong'">{{lastModified}}</td>
+                <td *ngIf="lastModified != 'Kosong'">{{lastModified | date:'longDate'}}, {{lastModifiedTime}} WIB</td>
+            </tr>
+            <tr>
+                <th>File terunggah</th>
+                <td style="width: 2rem;">&nbsp;:</td>
+                <td *ngIf="fileName == 'Kosong'">{{fileName}}</td>
+                <td *ngIf="fileName != 'Kosong'" (click)="downloadFileFromBlob(answer.idFile)" class="download-link">{{fileName}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div *ngIf="!isOverDueDate" class="upload-box rounded border">
+        <p><b> Unggah File </b></p>
+        <div class="custom-file mb-3">
+            <input (change)="setFile($event)" type="file" class="custom-file-input" id="answerFile" name="filename">
+            <label class="custom-file-label" for="answerFile">{{fileNameSelected}}</label>
+        </div>
+        <p-button (click)="uploadAnswer()" type="submit" value="Submit" label="Kirim" icon="pi pi-send"></p-button>
+        <!-- <div class="form-group">
+
+            <label for="answerFile">File</label>
+            <input (change)="setFile($event)" type="file" value="passwords.txt" class="form-control" id="answerFile" aria-describedby="answerFileHelp">
+        </div> -->
+        <!-- <input (click)="uploadAnswer()" type="submit" value="Submit"> -->
+    </div>
+    <div *ngIf="isOverDueDate">
+        <div class="closed text-center mx-auto rounded">
+            <p><i class="pi pi-times-circle mr-2"></i>Pengumpulan Jawaban Ditutup</p>
+        </div>
+    </div>
+
+</div>

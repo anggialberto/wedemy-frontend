@@ -1,0 +1,167 @@
+<section class="section-title mb-3">
+  <h2>Laporan</h2>
+</section>
+
+
+<p-tabView *ngIf="roleCode === ROLES.TUTOR">
+  <p-tabPanel header="Nilai">
+    <p-table #dt [value]="participantScores" [scrollable]="true" [(selection)]="selectedParticipantScore" dataKey="id"
+      styleClass="p-datatable-participant" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true"
+      [rowsPerPageOptions]="[10,25,50]" [loading]="loadingParicipantScore" [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+      [globalFilterFields]="['idAssignmentSubmission.idParticipant.idProfile.fullName','score']">
+      <ng-template pTemplate="caption">
+        <div class="table-header p-d-flex p-jc-between">
+          Daftar Peserta
+          <span class="p-input-icon-right">
+            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+              placeholder="Cari nama peserta..." />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+          <col style="width: 26px;">
+          <col style="width: 70px;">
+          <col style="width: 50px;">
+          <col style="width: 50px;">
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>No</th>
+          <th>Nama Peserta</th>
+          <th>Nilai Rata-rata</th>
+          <th>Berkas</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-participantScore let-i="rowIndex">
+        <tr class="p-selectable-row">
+          <td>
+            <span class="p-column-title">{{i + 1}}</span>
+          </td>
+          <td>
+            <span
+              class="p-column-title">{{participantScore.idAssignmentSubmission.idParticipant.idProfile.fullName}}</span>
+          </td>
+          <td>
+            <span class="p-column-title">{{participantScore.score}}</span>
+          </td>
+          <td>
+            <a (click)="getScoreReport(participantScore.idAssignmentSubmission.idParticipant.id)" class="btn btn-info">
+              <i class="pi pi-file-pdf"></i>
+              Unduh
+            </a>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">Peserta Tidak ditemukan</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-tabPanel>
+  
+  <p-tabPanel header="Kehadiran">
+    <div class="card px-4 py-4">
+      <p-toolbar styleClass="p-mb-4 d-none d-md-flex flex-md-row justify-content-md-end">
+        <button (click)="getPresenceReport()" pButton pRipple label="Cetak" icon="pi pi-save"
+          class="p-button-success p-mr-2"></button>
+      </p-toolbar>
+
+      <p-toolbar styleClass="p-mb-4 d-md-none d-flex flex-row justify-content-center">
+        <button (click)="getPresenceReport()" pButton pRipple label="Cetak" icon="pi pi-save"
+          class="p-button-success btn-block p-mb-2"></button>
+      </p-toolbar>
+
+      <p-table [value]="participantPresences" [scrollable]="true"
+      sortField="participantPresence.detailModule.idModuleRegistration.idModule.moduleName" sortMode="single"
+      (onSort)="onSort()" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+      [loading]="loadingParicipantScore"
+      [paginator]="true">
+      <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+          <col style="width: 100px;">
+          <col style="width: 100px;">
+          <col style="width: 100px;">
+        </colgroup>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nama Materi</th>
+          <th>Jadwal</th>
+          <th>Berkas</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-participantPresence let-rowIndex="rowIndex">
+        <tr
+          *ngIf="rowGroupMetadata[participantPresence.detailModule.idModuleRegistration.idModule.moduleName].index === rowIndex">
+          <td colspan="2">
+            <span
+              class="font-weight-bold">{{participantPresence.detailModule.idModuleRegistration.idModule.moduleName}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{participantPresence.detailModule.idLearningMaterial.learningMaterialName}}
+          </td>
+          <td>
+            {{participantPresence.detailModule.scheduleDate | date}}
+          </td>
+          <td>
+            <button (click)="getPresenceReportByIdModuleRgs(participantPresence.detailModule.id)"
+              target="blank" class="btn btn-info" [disabled]="!participantPresence.checkDownload">
+              <i class="pi pi-file-pdf"></i>
+              Unduh
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">Bahan Ajar Tidak ditemukan</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    </div>
+
+     
+  </p-tabPanel>
+</p-tabView>
+
+
+<div *ngIf="roleCode === ROLES.PARTICIPANT">
+
+  <table class="table table-responsive">
+    <thead class="thead-light">
+      <tr>
+        <th style="width: 400px;" scope="col">Nama Laporan</th>
+        <th scope="col">Berkas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sertifikat</td>
+        <td>
+          <button (click)="downloadReport(selectedCertificatedUser)" 
+            class="btn btn-info"
+            [disabled]="!isCertificateUserAvailable">
+            <i class="pi pi-file-pdf"></i>
+            Unduh
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>Nilai</td>
+        <td>
+          <button (click)="downloadReport(selectedScoreReportUser)" class="btn btn-info" [disabled]="!isReportScoreUserAvailable">
+            <i class="pi pi-file-pdf"></i>
+            Unduh
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

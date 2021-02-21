@@ -1,0 +1,101 @@
+<div class="course-sidebar position-fixed d-inline-block">
+  <img *ngIf="!isLoading" src="data:image/png;base64,{{class.idClass.idFile.file}}" class="img-course" />
+  <p-skeleton *ngIf="isLoading" width="100%" height="240px" styleClass="p-mb-2"></p-skeleton>
+
+  <div class="course-info d-flex flex-column text-center">
+    <h2 *ngIf="!isLoading" class="course-title">{{class.idClass.className}}</h2>
+    <h3 *ngIf="!isLoading" class="course-subtitle">{{class.startDate | date}} - {{class.endDate | date}} </h3>
+    <h3 *ngIf="!isLoading" class="course-subtitle">{{class.startTime}} - {{class.endTime}} </h3>
+    <p-skeleton *ngIf="isLoading" width="80%" styleClass="p-mb-2 mx-auto"></p-skeleton>
+    <p-skeleton *ngIf="isLoading" width="80%" styleClass="p-mb-2 mx-auto"></p-skeleton>
+    <p-skeleton *ngIf="isLoading" width="80%" styleClass="p-mb-2 mx-auto"></p-skeleton>
+  </div>
+
+  <ul class="sidebar-nav list-unstyled">
+    <!-- Sidebar Nav -->
+    <li [routerLink]="['enrolled', idDetailClass]" routerLinkActive="selected">
+      <a class="sidebar-nav-link">
+        <span class="lecture-sidebar-icon">
+          <i class="fas fa-list-alt"></i>
+        </span> Kurikulum Kelas
+      </a>
+    </li>
+
+    <li [routerLink]="['instructor',  idDetailClass]" routerLinkActive="selected">
+      <a class="sidebar-nav-link">
+        <span class="lecture-sidebar-icon">
+          <i class="fas fa-user"></i>
+        </span> Instruktur
+      </a>
+    </li>
+
+    <li [routerLink]="['report',  idDetailClass]" routerLinkActive="selected">
+      <a class="sidebar-nav-link">
+        <span class="lecture-sidebar-icon">
+          <i class="fas fa-clipboard-list"></i>
+        </span> Laporan
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="course-mainbar">
+  <aside class="d-block d-md-none d-lg-none">
+    <p-sidebar [(visible)]="display" 
+      position="left"
+      [style]="{marginTop :'64px', padding: '0'}"
+      styleClass="course-sidebar-mobile"
+      >
+      <img *ngIf="!isLoading" src="data:image/png;base64,{{class.idClass.idFile.file}}" class="img-course" />
+      <p-skeleton *ngIf="isLoading" width="100%" height="240px" styleClass="p-mb-2"></p-skeleton>
+    
+      <div class="course-info d-flex flex-column text-center">
+        <h2 *ngIf="!isLoading" class="course-title">{{class.idClass.className}}</h2>
+        <h3 *ngIf="!isLoading" class="course-subtitle">{{class.startDate | date}} - {{class.endDate | date}} </h3>
+        <h3 *ngIf="!isLoading" class="course-subtitle">{{class.startTime}} - {{class.endTime}} </h3>
+        <p-skeleton *ngIf="isLoading" width="80%" styleClass="p-mb-2 mx-auto"></p-skeleton>
+        <p-skeleton *ngIf="isLoading" width="80%" styleClass="p-mb-2 mx-auto"></p-skeleton>
+        <p-skeleton *ngIf="isLoading" width="80%" styleClass="p-mb-2 mx-auto"></p-skeleton>
+      </div>
+    
+      <ul class="sidebar-nav list-unstyled">
+        <!-- Sidebar Nav -->
+        <li [routerLink]="['enrolled', idDetailClass]" routerLinkActive="selected">
+          <a class="sidebar-nav-link">
+            <span class="lecture-sidebar-icon">
+              <i class="fas fa-list-alt"></i>
+            </span> Kurikulum Kelas
+          </a>
+        </li>
+    
+        <li [routerLink]="['instructor',  idDetailClass]" routerLinkActive="selected">
+          <a class="sidebar-nav-link">
+            <span class="lecture-sidebar-icon">
+              <i class="fas fa-user"></i>
+            </span> Instruktur
+          </a>
+        </li>
+    
+        <li [routerLink]="['report',  idDetailClass]" routerLinkActive="selected">
+          <a class="sidebar-nav-link">
+            <span class="lecture-sidebar-icon">
+              <i class="fas fa-clipboard-list"></i>
+            </span> Laporan
+          </a>
+        </li>
+      </ul>
+  
+    </p-sidebar>
+
+  </aside>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Bottom Navigation -->
+<nav class="d-flex d-md-none d-lg-none justify-content-end fixed-bottom">
+  <button (click)="showVisible()" class="btn btn-primary">
+    KLIK
+  </button>
+</nav>
+<!-- End Bottom Navigation -->

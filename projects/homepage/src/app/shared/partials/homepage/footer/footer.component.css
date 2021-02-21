@@ -1,0 +1,49 @@
+/* Footer */
+
+footer {
+    /* background-color: #f1c31b; */
+    background-color: whitesmoke;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.footer-img-logo {
+    width: 40px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.left-footer {
+    background-color: white;
+    color: black;
+    width: fit-content;
+}
+
+.divider {
+    height: 1px;
+    background-color: lightgrey;
+}
+
+.footer-b {
+    background-color: gray;
+    padding: 1rem;
+}
+
+p {
+    font-size: medium;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+img {
+    width: 2rem;
+    margin-right: 2px;
+}

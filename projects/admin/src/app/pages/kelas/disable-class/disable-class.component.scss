@@ -1,0 +1,44 @@
+@import "../../../styles/colors.scss";
+@import "../../../styles/font";
+@import "../../../styles/variables";
+
+.mat-icon {
+  margin-right: 15px;
+  color: $sidebar-icon-color;
+}
+  @media (max-width: 576px) {
+    .card{
+      width: 860px;
+    }
+  
+    :host::ng-deep .p-dialog{
+      width: auto !important;
+    }
+  }
+  
+  @media (max-width: 768px) {
+  
+    .card{
+      width: 900px;
+    }
+
+    :host::ng-deep .p-dialog{
+      width: 500px;
+      height: auto !important;
+    
+      p-dialog-content{
+        width: 500px;
+      }
+  
+    }
+  }
+  
+  :host::ng-deep .p-dialog{
+    width: 500px;
+  
+    p-dialog-content{
+      width: 500px;
+      height: 330px;
+    }
+  
+  }

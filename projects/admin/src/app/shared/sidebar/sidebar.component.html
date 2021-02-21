@@ -1,0 +1,66 @@
+<mat-list>
+
+  <mat-list-item routerLink="{{routes.DASHBOARD}}" routerLinkActive="active">
+    <mat-icon>home</mat-icon> Dashboard
+  </mat-list-item>
+  <ng-template #admin>
+    <mat-accordion>
+      <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="accordion">
+          <div class="icon">
+            <mat-icon>supervisor_account</mat-icon>
+          </div>
+          <div class="text">User</div>
+        </mat-expansion-panel-header>
+        <mat-list-item routerLink="{{routes.USERADMIN}}" routerLinkActive="active">
+          Admin
+        </mat-list-item>
+        <mat-list-item routerLink="{{routes.USERPENGAJAR}}" routerLinkActive="active">
+          Tutor
+        </mat-list-item>
+        <mat-list-item routerLink="{{routes.USERSTUDENT}}" routerLinkActive="active">
+          Peserta
+        </mat-list-item>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header class="accordion">
+          <div class="icon">
+            <mat-icon>school</mat-icon>
+          </div>
+          <div class="text">Kelas</div>
+        </mat-expansion-panel-header>
+        <mat-list-item routerLink="{{routes.KELASAKTIF}}" routerLinkActive="active">
+          Kelas Aktif
+        </mat-list-item>
+        <mat-list-item routerLink="{{routes.KELASNONAKTIF}}" routerLinkActive="active">
+          Kelas Nonaktif
+        </mat-list-item>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <!-- <mat-list-item routerLink="{{routes.KELAS}}" routerLinkActive="active">
+      <mat-icon>school</mat-icon> Kelas
+    </mat-list-item> -->
+    <mat-list-item routerLink="{{routes.SILABUS}}" routerLinkActive="active">
+      <mat-icon>class</mat-icon> Silabus
+    </mat-list-item>
+    <mat-list-item routerLink="{{routes.JENISTUGAS}}" routerLinkActive="active">
+      <mat-icon>assignment</mat-icon>Tipe Materi
+    </mat-list-item>
+    <mat-list-item routerLink="{{routes.NILAI}}" routerLinkActive="active">
+      <mat-icon>star_border</mat-icon> Nilai
+    </mat-list-item>
+    <mat-list-item routerLink="{{routes.STATUSTUGAS}}" routerLinkActive="active">
+      <mat-icon>assignment_turned_in</mat-icon>Status Persetujuan Tugas
+    </mat-list-item>
+    <mat-list-item routerLink="{{routes.STATUSABSEN}}" routerLinkActive="active">
+      <mat-icon>assignment_turned_in</mat-icon>Status Absen
+    </mat-list-item>
+  </ng-template>
+
+  <mat-list-item routerLink="{{routes.USERADMIN}}" *ngIf="isSuperAdmin; else admin" routerLinkActive="active">
+    <mat-icon>supervisor_account</mat-icon>Admin
+  </mat-list-item>
+
+</mat-list>

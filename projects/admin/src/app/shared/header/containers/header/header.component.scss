@@ -1,0 +1,66 @@
+@import '/projects/admin/src/app/styles/colors.scss';
+@import '/projects/admin/src/app/styles/font.scss';
+@import '/projects/admin/src/app/styles/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&display=swap');
+
+.header {
+  // background-color: $header-background-color;
+  background-color: #454575;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 2;
+  height: $header-height;
+  box-shadow: 0 0 20px rgba(202, 202, 202, 0.8);
+cursor: pointer;
+
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title-button {
+    // background-color: $header-button-background-color;
+    background-color: #454575;
+
+    box-shadow: none;
+
+    &:hover {
+      background-color: $header-button-background-color-hover;
+    }
+
+    @media (max-width: $small) {
+      margin-top: 0;
+    }
+  }
+
+  &__title-button-icon {
+  color: $header-button-font-color;
+   margin-bottom: 3px;
+   margin-right: 2px;
+  }
+
+  &__title-text {
+    color: $header-title-font-color;
+    margin-left: 25px;
+    font-weight: $fw-lighter;
+    margin-bottom: 5px;
+
+    @media (max-width: $small) {
+      display: none;
+    }
+  }
+}
+
+.header-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+h6{
+  margin-top: 9px;
+  margin-left: 2px;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+}

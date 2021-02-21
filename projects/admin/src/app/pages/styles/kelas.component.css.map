@@ -1,0 +1,13 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AAAA,SAAS,CAAC;EACR,YAAY,EAAE,IAAI;EAClB,KAAK,ECeG,wBAAwB;CDdjC;;AAED,AAAA,KAAK,AAAA,SAAS,CAAC,aAAa,CAAE;EAC5B,UAAU,EAAE,KAAK;CAEhB;;AAED,MAAM,EAAE,SAAS,EAAE,KAAK;EACtB,AAAA,KAAK,AAAA,SAAS,CAAC,UAAU,CAAA;IACvB,KAAK,EAAE,KAAK;GACb;EAED,AAAA,KAAK,CAAA;IACH,KAAK,EAAE,KAAK;GACb;;;AAGH,MAAM,EAAE,SAAS,EAAE,KAAK;EACtB,AAAA,KAAK,AAAA,SAAS,CAAC,UAAU,CAAA;IACvB,KAAK,EAAE,MAAM;GACd;EAED,AAAA,KAAK,CAAA;IACH,KAAK,EAAE,MAAM;GACd",
+    "sources": [
+        "../kelas/kelas.component.scss",
+        "../../styles/colors.scss",
+        "../../styles/font.scss",
+        "../../styles/variables.scss",
+        "../../styles/colors.scss"
+    ],
+    "names": [],
+    "file": "kelas.component.css"
+}

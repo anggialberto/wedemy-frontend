@@ -1,0 +1,22 @@
+.tables-wrapper {
+  padding: 0 8px;
+}
+
+.mat-icon {
+  margin-right: 15px;
+  color: rgba(110, 110, 110, 0.6);
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 600px;
+  }
+  :host::ng-deep .p-dialog {
+    width: 50vw;
+  }
+}
+
+:host::ng-deep .p-dialog {
+  width: auto !important;
+}
+/*# sourceMappingURL=silabus.component.css.map */

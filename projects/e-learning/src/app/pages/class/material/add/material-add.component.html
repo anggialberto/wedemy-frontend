@@ -1,0 +1,71 @@
+<section class="section-title">
+    <div (click)="back()" class="back-button rounded">
+        <div class="mr-1"><i class="pi pi-angle-left"></i>Kembali</div>
+    </div>
+    <h2>Tambahkan Materi</h2>
+</section>
+
+<div class="row">
+
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="materialCode">Kode Materi</label>
+            <input (ngModelChange)="mtrCodeValidation($event)" [(ngModel)]="materialCode" type="text" class="form-control {{mtrCodeClass}}" id="materialCode" aria-describedby="materialCodeHelp" minlength="1" maxlength="10">
+            <small *ngIf="!mtrCodeIsValid" id="materialCodeHelp" class="form-text text-danger">{{mtrCodeErrMsg}}</small>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="materialName">Nama Materi</label>
+            <input (ngModelChange)="mtrNameValidation($event)" [(ngModel)]="materialName" type="text" class="form-control {{mtrNameClass}}" id="materialName" aria-describedby="materialNameHelp" minlength="1">
+            <small *ngIf="!mtrNameIsValid" id="materialNameHelp" class="form-text text-danger">{{mtrNameErrMsg}}</small>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="startDate">Tanggal Berlangsung</label>
+            <input #dateLimit (ngModelChange)="startDateValidation($event)" [(ngModel)]="startDate" type="date" class="form-control {{startDateClass}}" id="startDate" aria-describedby="startDateHelp">
+            <small *ngIf="!startDateIsValid" id="startDateHelp" class="form-text text-danger">{{startDateErrMsg}}</small>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+        <!-- <div class="form-group">
+      <label for="materialFile">File</label>
+      <input (change)="setFile($event)" type="file" class="form-control" id="materialFile" aria-describedby="materialFileHelp">
+      <small id="materialFileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div> -->
+
+        <label>File Materi</label>
+        <div class="custom-file mb-3">
+            <input (change)="setFile($event)" type="file" class="custom-file-input" id="customFile" name="filename">
+            <label class="custom-file-label" for="customFile">{{selectedFileName}}</label>
+        </div>
+
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label>Tipe Materi &nbsp;</label>
+            <select [(ngModel)]="selectedMaterialType" class="form-control">
+        <option *ngFor="let materialType of materialTypes" [ngValue]="materialType">{{ materialType.learningMaterialTypeName }}</option>
+      </select>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="desc">Deskripsi</label>
+            <p-editor (ngModelChange)="descValidation($event)" id="desc" [(ngModel)]="description" [style]="{'height':'200px'}" required>
+            </p-editor>
+            <small *ngIf="!descIsValid" id="desc" class="form-text text-danger">{{descErrMsg}}</small>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button (click)="back()" class="btn btn-danger mr-3">Batal</button>
+            <button (click)="save()" class="btn btn-primary" [disabled]="disabledButton">Simpan</button>
+        </div>
+    </div>
+
+
+</div>

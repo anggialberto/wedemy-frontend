@@ -1,0 +1,13 @@
+<!-- <button class="user-button" mat-mini-fab [matMenuTriggerFor]="userMenu">
+  <mat-icon class="user-button__icon">person</mat-icon>
+</button> -->
+<!-- <img class="user-button" src="{{profile.idFile ? 'data:image/png;base64,'+profile.idFile.file : defaultImg}}" alt="" -->
+<img class="user-button" src="{{url}}" alt="" width="40px" height="40px" mat-mini-fab [matMenuTriggerFor]="userMenu">
+<mat-menu #userMenu="matMenu" xPosition="before">
+  <button mat-menu-item class="user-menu__item-title" routerLink="{{routes.PENGATURAN}}">
+    <i class="fas fa-user-cog"></i> Pengaturan
+  </button>
+  <div class="sign-button-wrapper">
+    <button class="sign-button" mat-flat-button (click)="signOutEmit()">Sign out</button>
+  </div>
+</mat-menu>

@@ -1,0 +1,153 @@
+.content {
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 90px;
+    background-color: #FFFFFF;
+    /* height: 65vh; */
+}
+
+.header {
+    padding-left: 1rem;
+    padding-right: 0.5rem;
+}
+
+
+/* Search Field */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+
+/* Class Card */
+
+.class-card-item {
+    min-width: 400px;
+}
+
+.class-card-dtl {
+    position: static;
+    width: fit-content;
+}
+
+.class-card-img {
+    position: relative;
+    width: 100%;
+    max-width: 100px;
+}
+
+.class-card-img::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+    height: auto;
+    width: fit-content;
+}
+
+.class-card-img img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.cards {
+    /* display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; */
+    padding-top: 1rem;
+}
+
+.bg-custom {
+    background-color: #FFECB3;
+    color: #6d5100;
+}
+
+.card {
+    margin-top: 1rem;
+}
+
+.filter {
+    width: 100%;
+    margin: 0rem !important;
+    padding: 0rem !important;
+    /* position: sticky; */
+}
+
+.box {
+    background-color: var(--surface-e);
+    /* text-align: center; */
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    /* box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12); */
+}
+
+.img-square-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100px;
+    min-width: 100px;
+    min-height: 100px;
+    margin-left: 13px;
+}
+
+.img-square-wrapper::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+    height: fit-content;
+    width: fit-content;
+}
+
+.img-square-wrapper img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    max-width: auto;
+    max-height: auto;
+}
+
+p {
+    font-size: medium;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+me {
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+.class-name {
+    word-wrap: break-word !important;
+}

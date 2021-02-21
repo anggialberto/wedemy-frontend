@@ -1,0 +1,24 @@
+
+.tables-wrapper {
+    padding: 0 8px;
+  }
+  
+  @media (max-width: 576px) {
+    :host::ng-deep .p-toolbar{
+      width: 828px;
+    }
+
+    .card{
+      width: 860px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    :host::ng-deep .p-toolbar{
+      width: 828px;
+    }
+
+    .card{
+      width: 860px;
+    }
+  }

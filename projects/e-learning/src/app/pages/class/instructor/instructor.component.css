@@ -1,0 +1,31 @@
+section.section-title {
+  font-family: "Quicksand", sans-serif;
+}
+
+.instructor-img {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+}
+
+.profile-wrapper {
+  font-family: "Quicksand", sans-serif;
+}
+
+.profile-wrapper .instructor-name {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.instructor-bio {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.photo-name {
+  min-width: 11rem;
+}
+
+
+/* @media screen and (min-width:) {} */

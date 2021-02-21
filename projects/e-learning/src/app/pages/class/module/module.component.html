@@ -1,0 +1,138 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+</p-confirmDialog>
+<section class="section-title mb-4">
+  <h2>Kurikulum Kelas</h2>
+</section>
+
+<div class="form-group p-d-flex p-flex-wrap justify-content-between">
+  <button (click)="refresh()" class="btn btn-primary">
+    <i class="pi pi-refresh"></i>
+    Muat Ulang
+  </button>
+  <select *ngIf="roleCode === roles.TUTOR" [(ngModel)]="selectedView" (ngModelChange)="onChangeOperation($event)"
+    class="shadow-sm form-control mode-option">
+    <option [value]="viewType.VIEW_ONLY">Mode Baca</option>
+    <option [value]="viewType.OPERATION_VIEW">Mode Operasi</option>
+  </select>
+</div>
+
+<div *ngIf="isLoading" class="row">
+  <div class="col-sm-12 course-section">
+    <div class="section-title d-flex justify-content-between align-items-center pl-3 py-2">
+      <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+    </div>
+    <ul class="section-list">
+      <li class="section-item d-flex justify-content-end py-1 align-items-center"
+        style="background-color: rgb(230, 230, 230);">
+        <div class="item pr-3" style="font-size: 12px; font-weight: bold;">
+          <p-skeleton width="10rem" styleClass="p-mb-2"></p-skeleton>
+        </div>
+      </li>
+      <li class="section-item d-md-flex justify-content-between py-2 align-items-center">
+        <div class="item">
+          <div class="title-container d-flex flex-row">
+            <span class="material-icon">
+              <p-skeleton width="1rem" styleClass=""></p-skeleton>
+            </span>
+
+            <span class="material-name">
+              <p-skeleton width="8rem" styleClass="p-mb-2"></p-skeleton>
+            </span>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <div class="material-icon">
+            <p-skeleton width="10rem" styleClass=""></p-skeleton>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="!isLoading">
+
+  <ng-template ngFor let-module [ngForOf]="modules.modulesAndMaterials" let-i="index">
+    <div class="row">
+      <div class="col-sm-12 course-section">
+        <div class="section-title d-flex justify-content-between align-items-center pl-3 py-2">
+          {{module.module.idModule.moduleName}}
+          <div *ngIf="selectedView == viewType.OPERATION_VIEW">
+            <a class="btn btn-add" [routerLink]="['../../add-material', idDetailClass]"
+              [queryParams]="{idModuleRegistration: module.module.id}">
+              Add Material
+            </a>
+          </div>
+        </div>
+
+        <ul class="section-list">
+          <ng-template ngFor let-material [ngForOf]="module.learningMaterials" let-i="index">
+            <li class="section-item d-flex justify-content-end py-1 align-items-center"
+              style="background-color: rgb(230, 230, 230);">
+              <div class="item pr-3" style="font-size: 12px; font-weight: bold;">
+                {{ material.learningMaterial.scheduleDate | date}} {{modules.detailClass.startTime}} -
+                {{modules.detailClass.endTime}}
+              </div>
+            </li>
+            <li class="section-item d-md-flex justify-content-between py-2 align-items-center">
+              <div class="item">
+                <div class="title-container">
+                  <span class="material-icon">
+                    <!-- material.learningMaterial.idLearningMaterial.idLearningMaterialType.code -->
+                    <i class="fas fa-file-alt"></i>
+                  </span>
+                  <ng-template [ngIf]="material.statusPresent.status === 200">
+                    <a [routerLink]="['../../../material']"
+                      [queryParams]="{ idDtlClass: idDetailClass, idDtlModuleRgs: material.learningMaterial.id}">
+                      <span class="material-name">
+                        {{ material.learningMaterial.idLearningMaterial.learningMaterialName }}
+                      </span>
+                    </a>
+                  </ng-template>
+                  <span class="material-name deactive" *ngIf="material.statusPresent.status === 400">
+                    {{ material.learningMaterial.idLearningMaterial.learningMaterialName }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <div *ngIf="material.statusPresent.type === 'badge' else btn" class="material-icon">
+                  <span class="badge badge-{{material.statusPresent.style}}"> {{material.statusPresent.msg}}</span>
+                </div>
+
+                <ng-template #btn>
+                  <div class="material-icon">
+                    <button (click)="present(material.learningMaterial.id)"
+                      class="btn btn-{{material.statusPresent.style}}">
+                      {{ material.statusPresent.msg }}
+                    </button>
+                  </div>
+                </ng-template>
+
+                <ng-template [ngIf]="selectedView == viewType.OPERATION_VIEW">
+                  <span class="material-icon">
+                    <a [routerLink]="['../../edit-material', idDetailClass]"
+                      [queryParams]="{idDetailModuleRegistration: material.learningMaterial.id}"
+                      class="btn btn-info rounded">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                  </span>
+
+                  <span class="material-icon">
+                    <button (click)="deleteMaterial(material.learningMaterial.idLearningMaterial.id)"
+                      class="btn btn-danger rounded-circle">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </span>
+                </ng-template>
+              </div>
+            </li>
+          </ng-template>
+
+        </ul>
+
+      </div>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,60 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+        <h1>Kelas: {{className}}</h1>
+    </mat-toolbar>
+
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 pb-5 justify-content-center">
+            <div class="card">
+                <p-toolbar class="p-m-3">
+                    <ng-template pTemplate="left">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            <button class="btn btn-primary-outline" width="20px" routerLink="/admin/kelas-aktif">
+                                <i class="fas fa-chevron-left fa-lg"></i>
+                            </button>
+                            <h5 class="m-2 pt-1 pb-1">Kembali</h5>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="right">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            <span class="p-input-icon-left">
+                                <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                    placeholder="Cari..." />
+                            </span>
+                        </div>
+                    </ng-template>
+                </p-toolbar>
+                <p-table #dt [value]="listModuleRegs" [rows]="10" [paginator]="true"
+                    [globalFilterFields]="['idModule.code','idModule.moduleName']" [rowHover]="true" dataKey="id"
+                    class="p-m-3" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true" [filterDelay]="0" [loading]="loading">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <!-- <th>Nomor</th> -->
+                            <th pSortableColumn="code">Kode Silabus<p-sortIcon field="code"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="name">Nama Silabus<p-sortIcon field="name"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-listModuleRegs let-rowIndex="rowIndex">
+                        <tr>
+                            <!-- <td>{{rowIndex+1}}</td> -->
+                            <td>{{listModuleRegs.idModule.code}}</td>
+                            <td>{{listModuleRegs.idModule.moduleName}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            Terdapat {{listModuleRegs ? listModuleRegs.length : 0 }} Silabus.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+
+            <p-confirmDialog></p-confirmDialog>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</app-layout>

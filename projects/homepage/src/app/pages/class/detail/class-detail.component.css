@@ -1,0 +1,210 @@
+.content {
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 70px;
+    background-color: #FFFFFF;
+    width: 100%;
+    position: relative;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    padding: 0px;
+}
+
+.content-item {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.content-item-dtl {
+    width: 80%;
+}
+
+.header {
+    height: 250px;
+    /* background-color: #FFECB3; */
+    background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+
+.header-item {
+    width: 80%;
+    margin-top: -150px;
+}
+
+tr {
+    height: 2rem;
+}
+
+.img-square-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    max-height: 250px;
+    min-width: 250px;
+    min-height: 250px;
+    /* margin-left: 13px; */
+}
+
+.img-square-wrapper::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+    height: fit-content;
+    width: fit-content;
+}
+
+.img-square-wrapper img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    max-width: auto;
+    max-height: auto;
+}
+
+
+/* .header-item img {
+    width: 250px;
+    height: 250px;
+} */
+
+.modul {
+    width: 100%;
+    padding: 0% !important;
+    background-color: whitesmoke;
+}
+
+.tag {
+    width: 5px !important;
+    height: auto;
+    background-color: #F1C21B;
+}
+
+[ng-cloak] {
+    display: none;
+}
+
+body {
+    box-sizing: border-box;
+    padding: .3em;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.tutor-profile img {
+    width: 100px;
+    height: 100px;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
+@media only screen and (max-width: 600px) {
+    .content-item {
+        width: 100%;
+    }
+    .card-wrapper {
+        width: 100%;
+    }
+    .sec1 {
+        font-size: 20px;
+    }
+    .header-item img {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+
+/* Popover styling */
+
+a {
+    text-decoration: none;
+}
+
+.popover__title {
+    text-decoration: none;
+}
+
+.popover__wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.popover__content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: -150px;
+    transform: translate(75px, 10px);
+    background-color: #FFFFFF;
+    padding: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    width: auto;
+}
+
+.popover__content:before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    right: calc(50% - 10px);
+    top: -8px;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #FFFFFF transparent;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.popover__wrapper:hover .popover__content {
+    z-index: 10;
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-100, -20px);
+    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+}
+
+.popover__message {
+    text-align: center;
+}
+
+p {
+    font-size: medium;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+.back {
+    position: absolute;
+    margin-top: 55px;
+}
